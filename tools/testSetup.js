@@ -7,6 +7,7 @@
 // 5. Sets up global vars that mimic a browser.
 
 /* eslint-disable no-var*/
+/* eslint-disable import/no-extraneous-dependencies */
 
 /* This setting assures the .babelrc dev config (which includes
  hot module reloading code) doesn't apply for tests.
