@@ -3,46 +3,47 @@ import delay from './delay';
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
-const courses = [
+const recipes = [
 	{
-		id: "react-flux-building-applications",
-		title: "Building Applications in React and Flux",
-		watchHref: "http://www.pluralsight.com/courses/react-flux-building-applications",
-		authorId: "cory-house",
-		length: "5:08",
-		category: "JavaScript"
+		id: "quiche",
+		title: "Quiche",
+		category: "other",
+		description: "Delicious Spinach Quiche and Ham & Cauliflower quiche",
+		ingredients: [
+			{
+				id: "cheese",
+				quantity: "8",
+				unit: "oz",
+			},
+			{
+				id: "pie-crust",
+				quantity: "2",
+				unit: "",
+			},
+			{
+				id: "egg",
+				quantity: "7",
+				unit: ""
+			}
+		]
+	}
+];
+
+const ingredients = [
+	{
+		id: "cheese",
+		name: "cheese",
+		category: "dairy"
 	},
 	{
-		id: "clean-code",
-		title: "Clean Code: Writing Code for Humans",
-		watchHref: "http://www.pluralsight.com/courses/writing-clean-code-humans",
-		authorId: "cory-house",
-		length: "3:10",
-		category: "Software Practices"
+		id: "pie-crust",
+		name: "pie crust",
+		category: "frozen"
 	},
 	{
-		id: "architecture",
-		title: "Architecting Applications for the Real World",
-		watchHref: "http://www.pluralsight.com/courses/architecting-applications-dotnet",
-		authorId: "cory-house",
-		length: "2:52",
-		category: "Software Architecture"
-	},
-	{
-		id: "career-reboot-for-developer-mind",
-		title: "Becoming an Outlier: Reprogramming the Developer Mind",
-		watchHref: "http://www.pluralsight.com/courses/career-reboot-for-developer-mind",
-		authorId: "cory-house",
-		length: "2:30",
-		category: "Career"
-	},
-	{
-		id: "web-components-shadow-dom",
-		title: "Web Component Fundamentals",
-		watchHref: "http://www.pluralsight.com/courses/web-components-shadow-dom",
-		authorId: "cory-house",
-		length: "5:10",
-		category: "HTML5"
+		id: "egg",
+		name: "egg",
+		category: "dairy"
 	}
 ];
 

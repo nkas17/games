@@ -6,12 +6,14 @@ import { Link, IndexLink } from 'react-router';
  */
 const Header = () => (
   <header>
-    <h1>{"Welcome, let's Eat!"}</h1>
+    <h1 className="page-header">{"Welcome, let's Eat!"}</h1>
     <nav>
-			<IndexLink to="/" activeClassName="active">Home</IndexLink>
-			{" | "}
-			<Link to="/about" activeClassName="active">About</Link>
-		</nav>
+      <IndexLink to="/" activeClassName="active">Home</IndexLink>
+      {" | "}
+      <Link to="/about" activeClassName="active">About</Link>
+      {" | "}
+      <Link to="/recipes" activeClassName="active">Recipes</Link>
+    </nav>
   </header>
 );
 
