@@ -1,0 +1,1 @@
+export const RECIPE_CREATE = 'RECIPE_CREATE';

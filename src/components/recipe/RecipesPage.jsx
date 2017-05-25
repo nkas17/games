@@ -1,4 +1,8 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import * as recipeActions from '../../actions/recipeActions';
 
 class RecipePage extends React.Component {
 	constructor(props, context) {
@@ -19,14 +23,22 @@ class RecipePage extends React.Component {
 	}
 
 	_onClickSave(){
-		alert(`${this.state.recipe.title}`);
+		this.props.actions.createRecipe(this.state.recipe);
+	}
+
+	_recipeRow(recipe, index) {
+		return <div key={index}>{recipe.title}</div>;
 	}
 
 	render() {
 		return (
   <div>
     <h1>Recipes</h1>
-    <h2>Add Recipe</h2>
+		<hr />
+    <h2>Existing Recipes</h2>
+    {this.props.recipes.map(this._recipeRow)}
+		<hr />
+    <h2>Add Recipes</h2>
     <input
       type="text"
       onChange={this._onTitleChange}
@@ -42,4 +54,22 @@ class RecipePage extends React.Component {
 		);
 	}
 }
-export default RecipePage;
+
+RecipePage.propTypes = {
+	recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+	actions: PropTypes.objectOf(PropTypes.func).isRequired,
+}
+
+const mapStateToProps = (state, ownProps) => {
+	return {
+		recipes: state.recipes
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		actions: bindActionCreators( recipeActions, dispatch ),
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);

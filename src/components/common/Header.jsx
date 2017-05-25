@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { Link } from 'react-router-dom';
 
 /**
  * Common Header component
@@ -8,11 +8,11 @@ const Header = () => (
   <header>
     <h1 className="page-header">{"Welcome, let's Eat!"}</h1>
     <nav>
-      <IndexLink to="/" activeClassName="active">Home</IndexLink>
+      <Link to="/" >Home</Link>
       {" | "}
-      <Link to="/about" activeClassName="active">About</Link>
+      <Link to="/about" >About</Link>
       {" | "}
-      <Link to="/recipes" activeClassName="active">Recipes</Link>
+      <Link to="/recipes" >Recipes</Link>
     </nav>
   </header>
 );

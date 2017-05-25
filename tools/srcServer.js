@@ -1,33 +1,31 @@
 
 /* eslint-disable import/no-extraneous-dependencies */
 
-import express from 'express';
-import webpack from 'webpack';
-import path from 'path';
-import open from 'open';
-import config from '../webpack.config.dev';
+/**
+ * Webpack Dev Server
+ * This file is used to run our local enviroment in development
+ * mode. Production build does not go through dev server.
+ */
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const webpackConfig = require('../webpack.config.dev'); // haven't created this yet. No sweat.
+const path = require('path');
 
-/* eslint-disable no-console */
+// always dev enviroment when running webpack dev server
+const env = { dev: process.env.NODE_ENV };
 
-const port = 3000;
-const app = express();
-const compiler = webpack(config);
+const devServerConfig = {
+	contentBase: path.join(__dirname, '../../src/'),
+  // Need historyApiFallback to be able to refresh on dynamic route
+	historyApiFallback: { disableDotRule: true },
+};
 
-app.use(require('webpack-dev-middleware')(compiler, {
-	noInfo: true,
-	publicPath: config.output.publicPath
-}));
+/**
+ * Creating the server to listen to. We are passing in our webpack config
+ * that we will setup at webpack/webpack.config.js. We are also passing in
+ * the server configuration object that we created above.
+ */
+const server = new WebpackDevServer(webpack(webpackConfig(env)), devServerConfig);
 
-app.use(require('webpack-hot-middleware')(compiler));
-
-app.get('*', function(req, res) {
-	res.sendFile(path.join( __dirname, '../src/index.html'));
-});
-
-app.listen(port, function(err) {
-	if (err) {
-		console.log(err);
-	} else {
-		open(`http://localhost:${port}`);
-	}
-});
+// will be live at http://localhost:3000/
+server.listen(3000, 'localhost');
