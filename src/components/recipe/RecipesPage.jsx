@@ -3,28 +3,23 @@ import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import * as recipeActions from '../../actions/recipeActions';
+import RecipeList from './RecipeList';
 
+/**
+ * Page that has all the recipe things
+ */
 class RecipePage extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 	}
 
-	_recipeRow(recipe, index) {
-		return ( 
-  <div key={index}>
-    {recipe.title} - {recipe.description}
-  </div>
-		);
-	}
-
 	render() {
 		return (
-  <div>
-    <h1>Recipes</h1>
-    <hr />
-    <h2>Existing Recipes</h2>
-    {this.props.recipes.map(this._recipeRow)}
-  </div>
+			<div className="jumbotron">
+				<h2>Recipes</h2>
+				<hr />
+				<RecipeList recipes={this.props.recipes} />
+			</div>
 		);
 	}
 }

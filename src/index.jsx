@@ -16,13 +16,13 @@ store.dispatch(loadRecipes());
 
 const render = () => {
 	ReactDOM.render(
-  <AppContainer>
-    <BrowserRouter >
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </AppContainer>,
+		<AppContainer>
+			<BrowserRouter >
+				<Provider store={store}>
+					<App />
+				</Provider>
+			</BrowserRouter>
+		</AppContainer>,
     document.getElementById('app')
   );
 };

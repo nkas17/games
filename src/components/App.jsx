@@ -11,16 +11,16 @@ import Header from './common/Header';
 class App extends React.Component { // eslint-disable-line
 	render() {
 		return (
-  <div className="container-fluid">
-    <Header />
-    <main>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/recipes" component={RecipesPage} />
-      </Switch>
-    </main>
-  </div>
+			<div className="container-fluid">
+				<Header />
+				<main>
+					<Switch>
+						<Route exact path="/" component={HomePage} />
+						<Route path="/about" component={AboutPage} />
+						<Route path="/recipes" component={RecipesPage} />
+					</Switch>
+				</main>
+			</div>
 		);
 	}
 }
