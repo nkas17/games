@@ -9,6 +9,7 @@
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools --ext js --ext jsx",
     "lint:watch": "npm run lint -- --watch",
+    "esl": "eslint ./src --ext jsx --ext js",
     "test": "jest",
     "test:watch": "npm run test -- --watch"
   },

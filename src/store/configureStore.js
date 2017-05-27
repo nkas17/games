@@ -1,5 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant' // eslint-disable-line
+import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
 const configureStore = (initialState) => {
@@ -11,7 +12,7 @@ const configureStore = (initialState) => {
 	return createStore(
 		rootReducer,
 		initialState,
-		composeEnhancers(applyMiddleware(reduxImmutableStateInvariant()))
+		composeEnhancers(applyMiddleware(thunk, reduxImmutableStateInvariant()))
 	);
 }
 

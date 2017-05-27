@@ -7,10 +7,12 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import App from './components/App';
+import {loadRecipes} from './actions/recipeActions';
 import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
+store.dispatch(loadRecipes());
 
 const render = () => {
 	ReactDOM.render(

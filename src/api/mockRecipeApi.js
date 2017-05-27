@@ -26,10 +26,33 @@ const recipes = [
 				unit: ""
 			}
 		]
+	},
+	{
+		id: "tacos",
+		title: "Tacos",
+		category: "other",
+		description: "Tasty homemade tacos - hard or soft",
+		ingredients: [
+			{
+				id: "cheese",
+				quantity: "8",
+				unit: "oz",
+			},
+			{
+				id: "ground beef",
+				quantity: "1.5",
+				unit: "lbs",
+			},
+			{
+				id: "tortilla",
+				quantity: "1",
+				unit: ""
+			}
+		]
 	}
 ];
 
-const ingredients = [
+const ingredients = [ // eslint-disable-line
 	{
 		id: "cheese",
 		name: "cheese",
@@ -58,7 +81,7 @@ const generateId = (course) => {
 
 class RecipeApi {
 	static getAllRecipess() {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve /*reject*/) => {
 			setTimeout(() => {
 				resolve(Object.assign([], recipes));
 			}, delay);
@@ -93,7 +116,7 @@ class RecipeApi {
 	}
 
 	static deleteRecipe(recipeId) {
-		return new Promise((resolve, reject) => {
+		return new Promise((resolve /*reject*/) => {
 			setTimeout(() => {
 				const indexOfRecipeToDelete = recipes.findIndex(recipe => {
 					recipe.id === recipeId;

@@ -9,6 +9,8 @@ const recipeReducer = (state=[], action) => {
 		return [...state,
 			Object.assign({}, action.recipe)
 		];
+	case actionTypes.LOAD_RECIPES_SUCCESS:
+		return action.recipes;
 	default:
 		return state;
 	}
