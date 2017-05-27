@@ -1,14 +1,14 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
+// import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import * as recipeActions from '../../actions/recipeActions';
+// import * as recipeActions from '../../actions/recipeActions';
 import RecipeList from './RecipeList';
 
 /**
  * Page that has all the recipe things
  */
-class RecipePage extends React.Component {
+class RecipePage extends React.Component { //eslint-disable-line
 	constructor(props, context) {
 		super(props, context);
 	}
@@ -26,7 +26,7 @@ class RecipePage extends React.Component {
 
 RecipePage.propTypes = {
 	recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
-	actions: PropTypes.objectOf(PropTypes.func).isRequired,
+	// actions: PropTypes.objectOf(PropTypes.func).isRequired,
 }
 
 const mapStateToProps = (state /*ownProps*/) => {
@@ -35,9 +35,9 @@ const mapStateToProps = (state /*ownProps*/) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (/*dispatch*/) => {
 	return {
-		actions: bindActionCreators( recipeActions, dispatch ),
+		// actions: bindActionCreators( recipeActions, dispatch ),
 	};
 }
 
