@@ -17,37 +17,37 @@ module.exports = {
 		],
 		extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
 		/**
-         * Allow all reacts to resolve to one module so npm link works
-         * @see - http://stackoverflow.com/a/31170775/5429686
-         */
+		 * Allow all reacts to resolve to one module so npm link works
+		 * @see - http://stackoverflow.com/a/31170775/5429686
+		 */
 		alias: {
 			react: resolve('./node_modules/react'),
 			'react-router': resolve('./node_modules/react-router'),
 		},
 	},
 	entry: [
-        // activate HMR for React
+		// activate HMR for React
 		'react-hot-loader/patch',
 
-        // bundle the client for webpack-dev-server
-        // and connect to the provided endpoint
+		// bundle the client for webpack-dev-server
+		// and connect to the provided endpoint
 		'webpack-dev-server/client?http://localhost:3000',
 
-        // bundle the client for hot reloading
-        // only- means to only hot reload for successful updates
+		// bundle the client for hot reloading
+		// only- means to only hot reload for successful updates
 		'webpack/hot/only-dev-server',
 
 
-        // the entry point of our app
+		// the entry point of our app
 		'./index.jsx',
 	],
 	output: {
-        // the output bundle
+		// the output bundle
 		filename: 'bundle.js',
 
 		path: resolve(__dirname, 'dist'),
 
-        // necessary for HMR to know where to load the hot update chunks
+		// necessary for HMR to know where to load the hot update chunks
 		publicPath: '/',
 	},
 
@@ -56,13 +56,13 @@ module.exports = {
 	devtool: 'inline-source-map',
 
 	devServer: {
-        // enable HMR on the server
+		// enable HMR on the server
 		hot: true,
 
-        // match the output path
+		// match the output path
 		contentBase: resolve(__dirname, 'dist'),
 
-        // match the output `publicPath`
+		// match the output `publicPath`
 		publicPath: '/',
 
 		port,
@@ -93,10 +93,12 @@ module.exports = {
 			},
 			{ 
 				test: /\.json$/, 
-				loader: 'json-loader' },
+				loader: 'json-loader' 
+			},
 			{ 
 				test: /\.(jpe?g|png|gif|ico)$/i, 
-				loader: 'file-loader?name=[name].[ext]' },
+				loader: 'file-loader?name=[name].[ext]' 
+			},
 			{
 				test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
 				loader: 'url-loader?limit=10000&mimetype=application/font-woff'
@@ -116,19 +118,19 @@ module.exports = {
 		],
 	},
 	plugins: [
-        // enable HMR globally
+		// enable HMR globally
 		new webpack.HotModuleReplacementPlugin(),
 
-        // prints more readable module names in the browser console on HMR updates
+		// prints more readable module names in the browser console on HMR updates
 		new webpack.NamedModulesPlugin(),
 
 		// Moves the index.html file over and asset folder to the dist folder
 		new CopyWebpackPlugin([
 			// {output}/dist/file.txt
-            { from: 'index.html' },
+			{ from: 'index.html' },
 
 			// Copy directory contents to {output}/to/directory/
-            { from: 'assets', to: 'assets' },
+			{ from: 'assets', to: 'assets' },
 		]),
 	],
 };

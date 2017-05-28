@@ -70,17 +70,17 @@ const ingredients = [ // eslint-disable-line
 	}
 ];
 
-function replaceAll(str, find, replace) {
+const replaceAll = (str, find, replace) => {
 	return str.replace(new RegExp(find, 'g'), replace);
-}
+};
 
 //This would be performed on the server in a real app. Just stubbing in.
-const generateId = (course) => {
-	return replaceAll(course.title, ' ', '-');
+const generateId = (recipe) => {
+	return replaceAll(recipe.title, ' ', '-');
 };
 
 class RecipeApi {
-	static getAllRecipess() {
+	static getAllRecipes() {
 		return new Promise((resolve /*reject*/) => {
 			setTimeout(() => {
 				resolve(Object.assign([], recipes));

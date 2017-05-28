@@ -16,7 +16,7 @@ const env = { dev: process.env.NODE_ENV };
 
 const devServerConfig = {
 	contentBase: path.join(__dirname, '../../src/'),
-  // Need historyApiFallback to be able to refresh on dynamic route
+	// Need historyApiFallback to be able to refresh on dynamic route
 	historyApiFallback: { disableDotRule: true },
 };
 

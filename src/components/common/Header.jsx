@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
  */
 const Header = () => (
 	<header>
-		<h2 className="page-header">{"Welcome, let's Eat!"}</h2>
+		<h1 className="page-header">{"come and eat!"}</h1>
 		<nav>
-			<Link to="/" >Home</Link>
+			<Link to="/" >home</Link>
 			{" | "}
-			<Link to="/recipes" >Recipes</Link>
+			<Link to="/recipe" >recipes</Link>
 			{" | "}
-			<Link to="/about" >About</Link>
+			<Link to="/about" >about</Link>
 		</nav>
 	</header>
 );

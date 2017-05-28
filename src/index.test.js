@@ -1,4 +1,4 @@
-import expect from 'expect';
+const expect = require('expect');
 
 describe('Our first test', () => {
 	it('should pass', () => {

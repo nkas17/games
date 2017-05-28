@@ -23,7 +23,7 @@ export const loadRecipesSuccess = (recipes) => ({ // eslint-disable-line
 
 export const loadRecipes = () => {
 	return (dispatch) => {
-		return recipeApi.getAllRecipess().then(recipes => {
+		return recipeApi.getAllRecipes().then(recipes => {
 			dispatch(loadRecipesSuccess(recipes));
 		}).catch(error => {
 			throw(error);

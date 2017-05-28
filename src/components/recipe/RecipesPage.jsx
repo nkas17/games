@@ -14,11 +14,12 @@ class RecipePage extends React.Component { //eslint-disable-line
 	}
 
 	render() {
+		const {recipes} = this.props;
 		return (
 			<div className="jumbotron">
 				<h2>Recipes</h2>
 				<hr />
-				<RecipeList recipes={this.props.recipes} />
+				<RecipeList recipes={recipes} />
 			</div>
 		);
 	}
