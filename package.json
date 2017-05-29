@@ -4,8 +4,7 @@
   "description": "Starter kit for React and Redux",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
-    "start": "npm-run-all --parallel test:watch dev-server lint:watch",
-    "dev-server": "webpack-dev-server",
+    "start": "webpack-dev-server",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools --ext js --ext jsx",
     "lint:watch": "npm run lint -- --watch",

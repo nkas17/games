@@ -17,6 +17,16 @@ export const loadRecipesSuccess = (recipes) => ({ // eslint-disable-line
 	recipes,
 });
 
+export const createRecipeSuccess = (recipe) => ({ // eslint-disable-line
+	type: actionTypes.CREATE_RECIPE_SUCCESS,
+	recipe,
+});
+
+export const updateRecipeSuccess = (recipe) => ({ // eslint-disable-line
+	type: actionTypes.UPDATE_RECIPE_SUCCESS,
+	recipe,
+});
+
 /**
  * thunks
  */
@@ -29,4 +39,15 @@ export const loadRecipes = () => {
 			throw(error);
 		});
 	}
-}
+};
+
+export const saveRecipe = (recipe) => {
+	return (dispatch) => {
+		return RecipeApi.saveRecipe(recipe).then(savedRecipe => {
+			recipe.id ? dispatch(updateRecipeSuccess(savedRecipe)) :
+				dispatch(createRecipeSuccess(savedRecipe));
+		}).catch(error => {
+			throw(error);
+		});
+	}
+};

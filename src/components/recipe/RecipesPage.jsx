@@ -11,6 +11,11 @@ import RecipeList from './RecipeList';
 class RecipePage extends React.Component { //eslint-disable-line
 	constructor(props, context) {
 		super(props, context);
+
+		this.redirectToAddRecipePage = this.redirectToAddRecipePage.bind(this);
+	}
+	redirectToAddRecipePage() {
+		this.props.history.push('/recipe/new');
 	}
 
 	render() {
@@ -20,6 +25,12 @@ class RecipePage extends React.Component { //eslint-disable-line
 				<h2>recipes</h2>
 				<hr />
 				<RecipeList recipes={recipes} />
+				<input
+					type="submit"
+					value="add recipe"
+					className="btn btn-primary"
+					onClick={this.redirectToAddRecipePage}
+				/>
 			</div>
 		);
 	}
@@ -27,6 +38,7 @@ class RecipePage extends React.Component { //eslint-disable-line
 
 RecipePage.propTypes = {
 	recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+	history: PropTypes.objectOf(PropTypes.any).isRequired,
 	// actions: PropTypes.objectOf(PropTypes.func).isRequired,
 }
 

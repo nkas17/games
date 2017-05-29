@@ -3,7 +3,6 @@ import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as recipeActions from '../../actions/recipeActions';
-import * as categoryActions from '../../actions/categoryActions';
 import RecipeForm from './RecipeForm';
 
 class RecipeManagementPage extends React.Component {
@@ -14,6 +13,21 @@ class RecipeManagementPage extends React.Component {
 			recipe: Object.assign({}, this.props.recipe),
 			errors: {},
 		}
+
+		this._updateRecipeState = this._updateRecipeState.bind(this);
+		this._saveRecipe = this._saveRecipe.bind(this);
+	}
+
+	_updateRecipeState(event) {
+		const field = event.target.name;
+		let recipe = this.state.recipe;
+		recipe[field] = event.target.value;
+		return this.setState({recipe: recipe});
+	}
+
+	_saveRecipe(event) {
+		event.preventDefault();
+		this.props.actions.saveRecipe(this.state.recipe);
 	}
 
 	render() {
@@ -24,7 +38,9 @@ class RecipeManagementPage extends React.Component {
 				<hr />
 				<RecipeForm 
 					recipe={this.state.recipe}
-					categories={categories} 
+					categories={categories}
+					onChange={this._updateRecipeState}
+					onSave={this._saveRecipe}
 					errors={this.state.errors}
 				/>
 			</div>
@@ -33,8 +49,10 @@ class RecipeManagementPage extends React.Component {
 }
 
 RecipeManagementPage.propTypes = {
-	recipe: PropTypes.objectOf(PropTypes.any).isRequired,
 	categories: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
+	match: PropTypes.objectOf(PropTypes.any).isRequired,
+	recipe: PropTypes.objectOf(PropTypes.any).isRequired,
+	actions: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 const mapStateToProps = (state /*ownProps*/) => {
@@ -56,13 +74,8 @@ const mapStateToProps = (state /*ownProps*/) => {
 	};
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		actions: bindActionCreators({
-			recipeActions,
-			categoryActions,
-		}, dispatch)
-	};
-}
+const mapDispatchToProps = dispatch => ({
+	actions: bindActionCreators(recipeActions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeManagementPage);
