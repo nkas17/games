@@ -17,7 +17,7 @@ class RecipePage extends React.Component { //eslint-disable-line
 		const {recipes} = this.props;
 		return (
 			<div className="jumbotron">
-				<h2>Recipes</h2>
+				<h2>recipes</h2>
 				<hr />
 				<RecipeList recipes={recipes} />
 			</div>

@@ -1,9 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
+import initialState from './initialState';
 /**
  * recipe reducer
  */
 
-const recipeReducer = (state=[], action) => {
+const recipeReducer = (state=initialState.recipes, action) => {
 	switch (action.type) {
 	case actionTypes.RECIPE_CREATE:
 		return [...state,

@@ -56,5 +56,11 @@ nav {
 
 #app .page-header {
 	font: 3em 'Flex Display', Helvetica, Arial, sans-serif;
-    letter-spacing: 7px;
+	font-style: italic;
+	letter-spacing: 7px;
 }
+
+/*#app .jumbotron h2 {
+	font-family: 'Flex Display', Helvetica, Arial, sans-serif;
+	font-weight: bold;
+}*/

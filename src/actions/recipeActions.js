@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import recipeApi from '../api/mockRecipeApi';
+import RecipeApi from '../api/mockRecipeApi';
 
 /**
  * recipe actions
@@ -23,7 +23,7 @@ export const loadRecipesSuccess = (recipes) => ({ // eslint-disable-line
 
 export const loadRecipes = () => {
 	return (dispatch) => {
-		return recipeApi.getAllRecipes().then(recipes => {
+		return RecipeApi.getAllRecipes().then(recipes => {
 			dispatch(loadRecipesSuccess(recipes));
 		}).catch(error => {
 			throw(error);
