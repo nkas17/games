@@ -28,6 +28,7 @@ class RecipeManagementPage extends React.Component {
 	_saveRecipe(event) {
 		event.preventDefault();
 		this.props.actions.saveRecipe(this.state.recipe);
+		this.props.history.push('/recipe');
 	}
 
 	render() {
@@ -53,6 +54,7 @@ RecipeManagementPage.propTypes = {
 	match: PropTypes.objectOf(PropTypes.any).isRequired,
 	recipe: PropTypes.objectOf(PropTypes.any).isRequired,
 	actions: PropTypes.objectOf(PropTypes.func).isRequired,
+	history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 const mapStateToProps = (state /*ownProps*/) => {
