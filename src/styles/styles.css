@@ -37,11 +37,11 @@
 
 #app {
 	/*font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
-	font: 16px 'ansonregular', Helvetica, Arial, sans-serif;
+	font: 16px Garamond, Helvetica, Arial, sans-serif;
 	color: #4d4d4d;
 }
 
-nav {
+#app nav {
 	padding-bottom: 10px;
 	font-family: 'Flex Display', Helvetica, Arial, sans-serif;
     letter-spacing: 7px;
@@ -49,7 +49,8 @@ nav {
 
 #app .page-header {
 	font: 3em 'Flex Display', Helvetica, Arial, sans-serif;
-	font-style: italic;
+/* 	font-style: italic; */
+	font-weight: bold;
 	letter-spacing: 7px;
 }
 
