@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import RecipeApi from '../api/mockRecipeApi';
-import { beginAjaxCall } from './ajaxStatusActions';
+import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 
 /**
  * recipe actions
@@ -50,6 +50,7 @@ export const saveRecipe = (recipe) => {
 			recipe.id ? dispatch(updateRecipeSuccess(savedRecipe)) :
 				dispatch(createRecipeSuccess(savedRecipe));
 		}).catch(error => {
+			dispatch(ajaxCallError());
 			throw(error);
 		});
 	}

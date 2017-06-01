@@ -19,7 +19,7 @@ const RecipeList = ({recipes}) => {
 				{recipes.map(recipe =>
 				(<RecipeListRow 
 					key={recipe.id} 
-					recipe={recipe} 
+					recipe={recipe}
 				/>)
 				)}
 			</tbody>

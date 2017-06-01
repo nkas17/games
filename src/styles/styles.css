@@ -54,6 +54,10 @@
 	letter-spacing: 7px;
 }
 
+.btn {
+	margin-right: 5px;
+}
+
 /*#app .jumbotron h2 {
 	font-family: 'Flex Display', Helvetica, Arial, sans-serif;
 	font-weight: bold;

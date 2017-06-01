@@ -4,7 +4,8 @@
   "description": "Starter kit for React and Redux",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
-    "start": "webpack-dev-server",
+    "start": "npm-run-all --parallel start:watch",
+    "start:watch": "webpack-dev-server",
     "clean": "node node_modules/rimraf/bin.js dist/*",
     "build-test": "npm run clean && webpack --config ./webpack.config.test.js",
     "build-prod": "npm run clean && webpack --config ./webpack.config.prod.js",

@@ -2,6 +2,7 @@ import React from 'react';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import toastr from 'toastr';
 import _ from 'lodash';
 import * as recipeActions from '../../actions/recipeActions';
 import RecipeForm from './RecipeForm';
@@ -13,10 +14,12 @@ class RecipeManagementPage extends React.Component {
 		this.state = {
 			recipe: Object.assign({}, this.props.recipe),
 			errors: {},
+			saving: false,
 		}
 
 		this._updateRecipeState = this._updateRecipeState.bind(this);
 		this._saveRecipe = this._saveRecipe.bind(this);
+		this._cancelRecipe = this._cancelRecipe.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -34,7 +37,27 @@ class RecipeManagementPage extends React.Component {
 
 	_saveRecipe(event) {
 		event.preventDefault();
-		this.props.actions.saveRecipe(this.state.recipe);
+		this.setState({saving:true});
+		this.props.actions.saveRecipe(this.state.recipe)
+			.then(()=> this._redirectOnSave())
+			.catch(error => {
+				toastr.error(error);
+				this.setState({saving:false});
+			});
+	}
+
+	_redirectOnSave(){
+		this.setState({saving:false});
+		toastr.success('Recipe saved');
+		this.props.history.push('/recipe');
+	}
+
+	_cancelRecipe(){
+		this._redirectOnCancel();
+	}
+
+	_redirectOnCancel(){
+		toastr.success('Recipe cancelled');
 		this.props.history.push('/recipe');
 	}
 
@@ -49,7 +72,9 @@ class RecipeManagementPage extends React.Component {
 					categories={categories}
 					onChange={this._updateRecipeState}
 					onSave={this._saveRecipe}
+					onCancel={this._cancelRecipe}
 					errors={this.state.errors}
+					saving={this.state.saving}
 				/>
 			</div>
 		);

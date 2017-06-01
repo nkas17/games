@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const RecipeForm = ({recipe, categories, onSave, onChange, saving, errors}) => {
+const RecipeForm = ({recipe, categories, onSave, onChange, onCancel, saving, errors}) => {
 	return (
 		<form>
 			<TextInput
@@ -23,23 +23,32 @@ const RecipeForm = ({recipe, categories, onSave, onChange, saving, errors}) => {
 			/>
 
 			<SelectInput
-				name="categoryId"
+				name="category"
 				label="Category"
 				value={recipe.category}
-				defaultOption="Select Category"
+				defaultOption="select category"
 				options={categories}
 				onChange={onChange}
-				error={errors.categoryId} 
+				error={errors.category} 
 			/>
 
-
-			<input
+			<button
 				type="submit"
 				disabled={saving}
-				value={saving ? 'Saving...' : 'Save'}
 				className="btn btn-primary"
 				onClick={onSave}
-			/>
+			>
+				{saving ? 'saving...' : 'save'}
+			</button>
+
+			<button
+				type="button"
+				disabled={saving}
+				className="btn btn-secondary"
+				onClick={onCancel}
+			>
+				{'cancel'}
+			</button>
 		</form>
 	);
 };
