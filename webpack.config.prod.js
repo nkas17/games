@@ -5,6 +5,7 @@
  */
 const { resolve, join } = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 	resolve: {
@@ -12,7 +13,7 @@ module.exports = {
 			join(__dirname, 'src'),
 			'node_modules',
 		],
-		extensions: ['.js', '.jsx', '.json', '.css'],
+		extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
 	},
 	entry: [
         // the entry point of our app
@@ -23,6 +24,7 @@ module.exports = {
 		filename: 'bundle.js',
 
 		path: resolve(__dirname, 'dist'),
+
 	},
 
 	context: resolve(__dirname, 'src'),
@@ -72,13 +74,33 @@ module.exports = {
 		],
 	},
 	plugins: [
-        // Moves the index.html file over and asset folder to the dist folder
+		// // Moves the index.html file over and asset folder to the dist folder
 		new CopyWebpackPlugin([
 			// {output}/dist/file.txt
-            { from: 'index.html' },
+			{ from: 'index.html' },
 
-			// Copy directory contents to {output}/to/directory/
-            { from: 'assets', to: 'assets' },
+		// 	// Copy directory contents to {output}/to/directory/
+		// 	{ from: 'assets', to: 'assets' },
 		]),
+		new webpack.LoaderOptionsPlugin({
+			minimize: true,
+			debug: false
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				'NODE_ENV': JSON.stringify('production')
+			}
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			beautify: false,
+			mangle: {
+				screw_ie8: true,
+				keep_fnames: true
+			},
+			compress: {
+				screw_ie8: true
+			},
+			comments: false
+		})
 	],
 };

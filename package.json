@@ -5,7 +5,9 @@
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "webpack-dev-server",
-    "build": "webpack --config ./webpack.config.test.js",
+    "clean": "node node_modules/rimraf/bin.js dist/*",
+    "build-test": "npm run clean && webpack --config ./webpack.config.test.js",
+    "build-prod": "npm run clean && webpack --config ./webpack.config.prod.js",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools --ext js --ext jsx",
     "lint:watch": "npm run lint -- --watch",
@@ -18,7 +20,7 @@
   "dependencies": {
     "babel-polyfill": "6.23.0",
     "bootstrap": "3.3.7",
-    "jquery": "2.2.3",
+    "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",

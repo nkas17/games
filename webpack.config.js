@@ -29,15 +29,6 @@ module.exports = {
 		// activate HMR for React
 		'react-hot-loader/patch',
 
-		// bundle the client for webpack-dev-server
-		// and connect to the provided endpoint
-		'webpack-dev-server/client?http://localhost:3000',
-
-		// bundle the client for hot reloading
-		// only- means to only hot reload for successful updates
-		'webpack/hot/only-dev-server',
-
-
 		// the entry point of our app
 		'./index.jsx',
 	],

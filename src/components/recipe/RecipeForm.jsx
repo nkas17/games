@@ -25,7 +25,7 @@ const RecipeForm = ({recipe, categories, onSave, onChange, saving, errors}) => {
 			<SelectInput
 				name="categoryId"
 				label="Category"
-				value={recipe.categoryId}
+				value={recipe.category}
 				defaultOption="Select Category"
 				options={categories}
 				onChange={onChange}

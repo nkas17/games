@@ -2,6 +2,7 @@ import React from 'react';
 import {PropTypes} from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import _ from 'lodash';
 import * as recipeActions from '../../actions/recipeActions';
 import RecipeForm from './RecipeForm';
 
@@ -57,18 +58,22 @@ RecipeManagementPage.propTypes = {
 	history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-const mapStateToProps = (state /*ownProps*/) => {
+const mapStateToProps = (state, ownProps) => {
+	const recipeId = ownProps.match.params.id;
 	const categoriesFormattedForSelectInput = state.categories.map(category => {
 		return {
 			value: category.id,
 			text: category.name,
 		}
 	});
-
 	let recipe = {
 		title:"default title", 
 		description: "default description",
 	};
+
+	if (recipeId !== 'new') {
+		recipe = _.find(state.recipes, { 'id': recipeId});
+	}
 
 	return {
 		recipe: recipe,
