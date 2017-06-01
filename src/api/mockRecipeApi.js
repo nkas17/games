@@ -6,7 +6,7 @@ import delay from './delay';
 const recipes = [
 	{
 		id: "quiche",
-		title: "Quiche",
+		title: "quiche",
 		category: "other",
 		description: "Delicious Spinach Quiche and Ham & Cauliflower quiche",
 		ingredients: [
@@ -29,7 +29,7 @@ const recipes = [
 	},
 	{
 		id: "tacos",
-		title: "Tacos",
+		title: "tacos",
 		category: "other",
 		description: "Tasty homemade tacos - hard or soft",
 		ingredients: [

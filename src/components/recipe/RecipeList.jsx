@@ -11,8 +11,8 @@ const RecipeList = ({recipes}) => {
 			<thead>
 				<tr>
 					<th>&nbsp;</th>
-					<th>Title</th>
-					<th>Description</th>
+					<th>title</th>
+					<th>description</th>
 				</tr>
 			</thead>
 			<tbody>
