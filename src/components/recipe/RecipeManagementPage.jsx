@@ -19,6 +19,12 @@ class RecipeManagementPage extends React.Component {
 		this._saveRecipe = this._saveRecipe.bind(this);
 	}
 
+	componentWillReceiveProps(nextProps) {
+		if (this.props.recipe.id != nextProps.recipe.id) {
+			this.setState({recipe: Object.assign({},nextProps.recipe)});
+		}
+	}
+
 	_updateRecipeState(event) {
 		const field = event.target.name;
 		let recipe = this.state.recipe;
@@ -67,12 +73,18 @@ const mapStateToProps = (state, ownProps) => {
 		}
 	});
 	let recipe = {
-		title:"default title", 
-		description: "default description",
+		title:"", 
+		description: "",
 	};
 
 	if (recipeId !== 'new') {
 		recipe = _.find(state.recipes, { 'id': recipeId});
+		if(recipe === undefined) {
+			recipe = {
+				title:"", 
+				description: "",
+			};
+		}
 	}
 
 	return {

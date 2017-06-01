@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 import RecipeApi from '../api/mockRecipeApi';
+import { beginAjaxCall } from './ajaxStatusActions';
 
 /**
  * recipe actions
@@ -33,6 +34,7 @@ export const updateRecipeSuccess = (recipe) => ({ // eslint-disable-line
 
 export const loadRecipes = () => {
 	return (dispatch) => {
+		dispatch(beginAjaxCall());
 		return RecipeApi.getAllRecipes().then(recipes => {
 			dispatch(loadRecipesSuccess(recipes));
 		}).catch(error => {
@@ -43,6 +45,7 @@ export const loadRecipes = () => {
 
 export const saveRecipe = (recipe) => {
 	return (dispatch) => {
+		dispatch(beginAjaxCall());
 		return RecipeApi.saveRecipe(recipe).then(savedRecipe => {
 			recipe.id ? dispatch(updateRecipeSuccess(savedRecipe)) :
 				dispatch(createRecipeSuccess(savedRecipe));
