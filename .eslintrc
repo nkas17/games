@@ -26,6 +26,7 @@
     "indent": ["error", "tab"],
     "react/jsx-indent": ["error","tab"],
     "react/jsx-indent-props": ["error","tab"],
+    "react/jsx-filename-extension": "off",
     "import/prefer-default-export": "off",
     "no-tabs": "off",
     "max-len": "off",

@@ -7,7 +7,7 @@ import _ from 'lodash';
 import * as recipeActions from '../../actions/recipeActions';
 import RecipeForm from './RecipeForm';
 
-class RecipeManagementPage extends React.Component {
+export class RecipeManagementPage extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
@@ -35,8 +35,26 @@ class RecipeManagementPage extends React.Component {
 		return this.setState({recipe: recipe});
 	}
 
+	_recipeFormIsValid() {
+		let formIsValid = true;
+		let errors = {};
+
+		if (this.state.recipe.title.length < 5) {
+			errors.title = 'title must be at least 5 characters.';
+			formIsValid = false;
+		}
+
+		this.setState({errors: errors});
+		return formIsValid;
+	}
+
 	_saveRecipe(event) {
 		event.preventDefault();
+
+		if (!this._recipeFormIsValid()) {
+			return;
+		}
+
 		this.setState({saving:true});
 		this.props.actions.saveRecipe(this.state.recipe)
 			.then(()=> this._redirectOnSave())
@@ -65,7 +83,7 @@ class RecipeManagementPage extends React.Component {
 		const {categories} = this.props;
 		return (
 			<div className="jumbotron">
-				<h2>{`Manage ${this.props.match.params.id} Recipe`} </h2>
+				<h2>{`Manage ${this.props.match.params && this.props.match.params.id} Recipe`} </h2>
 				<hr />
 				<RecipeForm 
 					recipe={this.state.recipe}

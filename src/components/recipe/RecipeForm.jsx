@@ -33,6 +33,7 @@ const RecipeForm = ({recipe, categories, onSave, onChange, onCancel, saving, err
 			/>
 
 			<button
+				id="save"
 				type="submit"
 				disabled={saving}
 				className="btn btn-primary"
@@ -42,6 +43,7 @@ const RecipeForm = ({recipe, categories, onSave, onChange, onCancel, saving, err
 			</button>
 
 			<button
+				id="cancel"
 				type="button"
 				disabled={saving}
 				className="btn btn-secondary"
