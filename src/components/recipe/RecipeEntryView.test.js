@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
-import RecipeForm from './RecipeForm';
+import { shallow } from 'enzyme';
+import RecipeEntryView from './RecipeEntryView';
 
 /* eslint-disable no-undef */
 
@@ -15,12 +15,12 @@ const setup = (saving) => (
 	}
 )
 
-const enzymeSetup = (saving) => shallow(<RecipeForm {...setup(saving)} />);
+const enzymeSetup = (saving) => shallow(<RecipeEntryView {...setup(saving)} />);
 
-describe('RecipeForm', () => {
+describe('RecipeEntryView', () => {
 	it('renders correctly', () => {
 		const tree = renderer.create(
-			<RecipeForm {...setup(false)} />
+			<RecipeEntryView {...setup(false)} />
 		).toJSON();
 		expect(tree).toMatchSnapshot();
 	});

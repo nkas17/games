@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RecipeForm renders correctly 1`] = `
+exports[`RecipeEntryView renders correctly 1`] = `
 <form>
   <div
     className="form-group"

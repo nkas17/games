@@ -65,6 +65,7 @@ RecipeForm.propTypes = {
 	categories: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
 	onSave: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
+	onCancel: PropTypes.func.isRequired,
 	saving: PropTypes.bool,
 	errors: PropTypes.objectOf(PropTypes.any),
 };

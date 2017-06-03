@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './home/HomePage';
 import AboutPage from './about/AboutPage';
 import RecipesPage from './recipe/RecipesPage';
-import RecipeManagementPage from './recipe/RecipeManagementPage';
+import RecipeEntryContainer from './recipe/RecipeEntryContainer'; // eslint-disable-line import/no-named-as-default
 import Header from './common/Header';
 
 /**
@@ -19,7 +19,7 @@ class App extends React.Component { // eslint-disable-line
 						<Route exact path="/" component={HomePage} />
 						<Route path="/about" component={AboutPage} />
 						<Route exact path="/recipe" component={RecipesPage} />
-						<Route path="/recipe/:id" component={RecipeManagementPage} />
+						<Route path="/recipe/:id" component={RecipeEntryContainer} />
 					</Switch>
 				</main>
 			</div>

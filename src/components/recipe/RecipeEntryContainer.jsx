@@ -5,9 +5,10 @@ import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
 import _ from 'lodash';
 import * as recipeActions from '../../actions/recipeActions';
-import RecipeForm from './RecipeForm';
+import { categoriesFormattedForSelectInput } from '../../selectors/selectors';
+import RecipeEntryView from './RecipeEntryView';
 
-export class RecipeManagementPage extends React.Component {
+export class RecipeEntryContainer extends React.Component {
 	constructor(props, context) {
 		super(props, context);
 
@@ -85,7 +86,7 @@ export class RecipeManagementPage extends React.Component {
 			<div className="jumbotron">
 				<h2>{`Manage ${this.props.match.params && this.props.match.params.id} Recipe`} </h2>
 				<hr />
-				<RecipeForm 
+				<RecipeEntryView 
 					recipe={this.state.recipe}
 					categories={categories}
 					onChange={this._updateRecipeState}
@@ -99,7 +100,7 @@ export class RecipeManagementPage extends React.Component {
 	}
 }
 
-RecipeManagementPage.propTypes = {
+RecipeEntryContainer.propTypes = {
 	categories: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
 	match: PropTypes.objectOf(PropTypes.any).isRequired,
 	recipe: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -109,12 +110,7 @@ RecipeManagementPage.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
 	const recipeId = ownProps.match.params.id;
-	const categoriesFormattedForSelectInput = state.categories.map(category => {
-		return {
-			value: category.id,
-			text: category.name,
-		}
-	});
+
 	let recipe = {
 		title:"", 
 		description: "",
@@ -132,7 +128,7 @@ const mapStateToProps = (state, ownProps) => {
 
 	return {
 		recipe: recipe,
-		categories: categoriesFormattedForSelectInput,
+		categories: categoriesFormattedForSelectInput(state.categories),
 	};
 }
 
@@ -140,4 +136,4 @@ const mapDispatchToProps = dispatch => ({
 	actions: bindActionCreators(recipeActions, dispatch)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RecipeManagementPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeEntryContainer);
