@@ -17,19 +17,19 @@ const setup = () => (
 					{
 						id: 'cheese',
 						quantity: '8',
-						unit: 'oz'
+						unit: 'oz',
 					},
 					{
 						id: 'ground beef',
 						quantity: '1.5',
-						unit: 'lbs'
+						unit: 'lbs',
 					},
 					{
 						id: 'tortilla',
 						quantity: '1',
-						unit: ''
-					}
-				]
+						unit: '',
+					},
+				],
 			},
 			{
 				id: 'quiche',
@@ -40,21 +40,21 @@ const setup = () => (
 					{
 						id: 'cheese',
 						quantity: '8',
-						unit: 'oz'
+						unit: 'oz',
 					},
 					{
 						id: 'pie-crust',
 						quantity: '2',
-						unit: ''
+						unit: '',
 					},
 					{
 						id: 'egg',
 						quantity: '7',
-						unit: ''
-					}
-				]
-			}
-		]
+						unit: '',
+					},
+				],
+			},
+		],
 	}
 );
 
@@ -63,8 +63,9 @@ const renderWithRouter = node => renderer.create(<Router>{node}</Router>);
 describe('RecipeList', () => {
 	it('renders correctly', () => {
 		const tree = renderWithRouter(
-			<RecipeList {...setup()} />
-		).toJSON();
+			<RecipeList
+				{...setup()}
+			/>).toJSON();
 		expect(tree).toMatchSnapshot();
 	});
 });

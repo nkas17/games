@@ -7,8 +7,8 @@ import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import App from './components/App';
-import {loadRecipes} from './actions/recipeActions';
-import {loadCategories} from './actions/categoryActions';
+import { loadRecipes } from './actions/recipeActions';
+import { loadCategories } from './actions/categoryActions';
 import './styles/styles.css';
 // import '../node_modules/milligram/dist/milligram.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -28,8 +28,7 @@ const render = () => {
 				</Provider>
 			</BrowserRouter>
 		</AppContainer>,
-    document.getElementById('app')
-  );
+    document.getElementById('app'));
 };
 
 render();
@@ -37,6 +36,6 @@ render();
 // Hot Module Replacement API
 if (module.hot) {
 	module.hot.accept('./components/App', () => {
-		render('App')
+		render('App');
 	});
 }

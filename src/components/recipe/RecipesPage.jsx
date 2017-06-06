@@ -1,8 +1,6 @@
 import React from 'react';
-// import {bindActionCreators} from 'redux';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-// import * as recipeActions from '../../actions/recipeActions';
+import { connect } from 'react-redux';
 import RecipeList from './RecipeList';
 
 /**
@@ -19,7 +17,7 @@ class RecipePage extends React.Component { //eslint-disable-line
 	}
 
 	render() {
-		const {recipes} = this.props;
+		const { recipes } = this.props;
 		return (
 			<div className="jumbotron">
 				<h2>recipes</h2>
@@ -40,18 +38,14 @@ RecipePage.propTypes = {
 	recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
 	history: PropTypes.objectOf(PropTypes.any).isRequired,
 	// actions: PropTypes.objectOf(PropTypes.func).isRequired,
-}
+};
 
-const mapStateToProps = (state /*ownProps*/) => {
-	return {
-		recipes: state.recipes
-	}
-}
+const mapStateToProps = state => ({
+	recipes: state.recipes,
+});
 
-const mapDispatchToProps = (/*dispatch*/) => {
-	return {
+const mapDispatchToProps = (/* dispatch*/) => ({
 		// actions: bindActionCreators( recipeActions, dispatch ),
-	};
-}
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);

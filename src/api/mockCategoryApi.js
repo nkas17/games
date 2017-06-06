@@ -5,22 +5,22 @@ import delay from './delay';
 // All calls return promises.
 const categories = [
 	{
-		"id":"other",
-		"name": "other",
-	}, 
+		id: 'other',
+		name: 'other',
+	},
 	{
-		"id":"poultry",
-		"name":"poultry"
-	}, 
+		id: 'poultry',
+		name: 'poultry',
+	},
 	{
-		"id":"beef",
-		"name": "beef",
+		id: 'beef',
+		name: 'beef',
 	},
 ];
 
 class CategoryApi {
 	static getAllCategories() {
-		return new Promise((resolve /*reject*/) => {
+		return new Promise((resolve /* reject*/) => {
 			setTimeout(() => {
 				resolve(Object.assign([], categories));
 			}, delay);

@@ -1,6 +1,4 @@
-	export const categoriesFormattedForSelectInput = categories => categories.map(category => {
-		return {
-			value: category.id,
-			text: category.name,
-		}
-	});
+	export const categoriesFormattedForSelectInput = categories => categories.map(category => ({
+		value: category.id,
+		text: category.name,
+	}));

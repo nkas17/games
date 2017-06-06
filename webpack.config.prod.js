@@ -47,30 +47,30 @@ module.exports = {
 					'css-loader',
 				],
 			},
-			{ 
-				test: /\.json$/, 
-				loader: 'json-loader'
-			},
-			{ 
-				test: /\.(jpe?g|png|gif|ico)$/i, 
-				loader: 'file-loader?name=[name].[ext]' 
+			{
+				test: /\.json$/,
+				loader: 'json-loader',
 			},
 			{
-				test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+				test: /\.(jpe?g|png|gif|ico)$/i,
+				loader: 'file-loader?name=[name].[ext]',
 			},
 			{
-				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+				test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=application/font-woff',
 			},
 			{
-				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'file-loader'
+				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
 			},
 			{
-				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-			}
+				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'file-loader',
+			},
+			{
+				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+			},
 		],
 	},
 	plugins: [
@@ -84,23 +84,23 @@ module.exports = {
 		]),
 		new webpack.LoaderOptionsPlugin({
 			minimize: true,
-			debug: false
+			debug: false,
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
-				'NODE_ENV': JSON.stringify('production')
-			}
+				NODE_ENV: JSON.stringify('production'),
+			},
 		}),
 		new webpack.optimize.UglifyJsPlugin({
 			beautify: false,
 			mangle: {
 				screw_ie8: true,
-				keep_fnames: true
+				keep_fnames: true,
 			},
 			compress: {
-				screw_ie8: true
+				screw_ie8: true,
 			},
-			comments: false
-		})
+			comments: false,
+		}),
 	],
 };

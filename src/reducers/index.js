@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import recipes from './recipeReducer';
 import categories from './categoryReducer';
 import numAjaxCallsInProgress from './ajaxStatusReducer';

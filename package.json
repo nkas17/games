@@ -83,11 +83,9 @@
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "2.18.0"
   },
-
   "jest": {
     "verbose": true
   },
-  
   "repository": {
     "type": "git"
   }

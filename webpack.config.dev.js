@@ -45,30 +45,30 @@ module.exports = {
 					'css-loader',
 				],
 			},
-			{ 
-				test: /\.json$/, 
-				loader: 'json-loader'
-			},
-			{ 
-				test: /\.(jpe?g|png|gif|ico)$/i, 
-				loader: 'file-loader?name=[name].[ext]' 
+			{
+				test: /\.json$/,
+				loader: 'json-loader',
 			},
 			{
-				test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+				test: /\.(jpe?g|png|gif|ico)$/i,
+				loader: 'file-loader?name=[name].[ext]',
 			},
 			{
-				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+				test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=application/font-woff',
 			},
 			{
-				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'file-loader'
+				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
 			},
 			{
-				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
-				loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-			}
+				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'file-loader',
+			},
+			{
+				test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+				loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+			},
 		],
 	},
 	plugins: [

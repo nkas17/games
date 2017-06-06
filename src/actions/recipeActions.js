@@ -4,7 +4,7 @@ import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 
 /**
  * recipe actions
- * 
+ *
  */
 
 export const createRecipe = (recipe => ({ // eslint-disable-line
@@ -32,26 +32,22 @@ export const updateRecipeSuccess = (recipe) => ({ // eslint-disable-line
  * thunks
  */
 
-export const loadRecipes = () => {
-	return (dispatch) => {
-		dispatch(beginAjaxCall());
-		return RecipeApi.getAllRecipes().then(recipes => {
-			dispatch(loadRecipesSuccess(recipes));
-		}).catch(error => {
-			throw(error);
-		});
-	}
+export const loadRecipes = () => (dispatch) => {
+	dispatch(beginAjaxCall());
+	return RecipeApi.getAllRecipes().then((recipes) => {
+		dispatch(loadRecipesSuccess(recipes));
+	}).catch((error) => {
+		throw (error);
+	});
 };
 
-export const saveRecipe = (recipe) => {
-	return (dispatch) => {
-		dispatch(beginAjaxCall());
-		return RecipeApi.saveRecipe(recipe).then(savedRecipe => {
-			recipe.id ? dispatch(updateRecipeSuccess(savedRecipe)) :
+export const saveRecipe = recipe => (dispatch) => {
+	dispatch(beginAjaxCall());
+	return RecipeApi.saveRecipe(recipe).then((savedRecipe) => {
+		recipe.id ? dispatch(updateRecipeSuccess(savedRecipe)) : // eslint-disable-line no-unused-expressions
 				dispatch(createRecipeSuccess(savedRecipe));
-		}).catch(error => {
-			dispatch(ajaxCallError());
-			throw(error);
-		});
-	}
+	}).catch((error) => {
+		dispatch(ajaxCallError());
+		throw (error);
+	});
 };

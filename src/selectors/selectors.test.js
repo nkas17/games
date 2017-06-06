@@ -9,21 +9,21 @@ describe('Recipe Selectors', () => {
 				{
 					id: 'other',
 					name: 'other',
-				}, 
+				},
 				{
 					id: 'poultry',
-					name: 'poultry'
-				}, 
+					name: 'poultry',
+				},
 				{
-					id:'beef',
+					id: 'beef',
 					name: 'beef',
 				},
 			];
 
 			const expected = [
-				{value: 'other', text:'other'},
-				{value: 'poultry', text:'poultry'},
-				{value: 'beef', text:'beef'},
+				{ value: 'other', text: 'other' },
+				{ value: 'poultry', text: 'poultry' },
+				{ value: 'beef', text: 'beef' },
 			];
 
 			expect(categoriesFormattedForSelectInput(categories)).toEqual(expected);

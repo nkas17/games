@@ -5,23 +5,26 @@ import RecipeEntryView from './RecipeEntryView';
 
 /* eslint-disable no-undef */
 
-const setup = (saving) => (
+const setup = saving => (
 	{
-		recipe: {}, saving: saving, errors: {},
+		recipe: {},
+		saving,
+		errors: {},
 		categories: [],
 		onSave: () => {},
 		onChange: () => {},
 		onCancel: () => {},
 	}
-)
+);
 
-const enzymeSetup = (saving) => shallow(<RecipeEntryView {...setup(saving)} />);
+const enzymeSetup = saving => shallow(<RecipeEntryView {...setup(saving)} />);
 
 describe('RecipeEntryView', () => {
 	it('renders correctly', () => {
 		const tree = renderer.create(
-			<RecipeEntryView {...setup(false)} />
-		).toJSON();
+			<RecipeEntryView
+				{...setup(false)}
+			/>).toJSON();
 		expect(tree).toMatchSnapshot();
 	});
 
@@ -33,5 +36,5 @@ describe('RecipeEntryView', () => {
 	it('has correct caption on save button when saving', () => {
 		const wrapper = enzymeSetup(true);
 		expect(wrapper.find('#save').props().children).toBe('saving...');
-	})
+	});
 });

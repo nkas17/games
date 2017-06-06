@@ -16,20 +16,20 @@ const setup = () => (
 				{
 					id: 'cheese',
 					quantity: '8',
-					unit: 'oz'
+					unit: 'oz',
 				},
 				{
 					id: 'ground beef',
 					quantity: '1.5',
-					unit: 'lbs'
+					unit: 'lbs',
 				},
 				{
 					id: 'tortilla',
 					quantity: '1',
-					unit: ''
-				}
-			]
-		}
+					unit: '',
+				},
+			],
+		},
 	}
 );
 
@@ -38,8 +38,9 @@ const renderWithRouter = node => renderer.create(<Router>{node}</Router>);
 describe('RecipeListRow', () => {
 	it('renders correctly', () => {
 		const tree = renderWithRouter(
-			<RecipeListRow {...setup()} />
-		).toJSON();
+			<RecipeListRow
+				{...setup()}
+			/>).toJSON();
 		expect(tree).toMatchSnapshot();
 	});
 });
