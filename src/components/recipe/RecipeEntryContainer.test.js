@@ -1,27 +1,42 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 import {RecipeEntryContainer} from './RecipeEntryContainer';
 
 /* eslint-disable no-undef */
 
-const setup = () => (
+const setup = (id) => (
 	{
 		categories: [],
-		match: {},
+		match: {params:{id:id}},
 		recipe: {
-			title:"", 
+			title: "", 
 			description: "",
 		},
 		actions: { saveRecipe: () => {return Promise.resolve();}},
 		history: {},
 	}
-)
+);
 
-const enzymeSetup = () => mount(<RecipeEntryContainer {...setup()} />);
+const enzymeSetup = (id) => mount(<RecipeEntryContainer {...setup(id)} />);
 
-describe('Recipe Entry Container', () => {
+describe('RecipeEntryContainer', () => {
+	it('renders new recipe correctly', () => {
+		const tree = renderer.create(
+			<RecipeEntryContainer {...setup('new')} />
+		).toJSON();
+		expect(tree).toMatchSnapshot();
+	});
+
+	it('renders an undefined recipe correctly', () => {
+		const tree = renderer.create(
+			<RecipeEntryContainer {...setup('sushi')} />
+		).toJSON();
+		expect(tree).toMatchSnapshot();
+	});
+
 	it('sets error message when trying to save empty title', () => {
-		const wrapper = enzymeSetup();
+		const wrapper = enzymeSetup('new');
 		const saveButton = wrapper.find('#save');
 		expect(saveButton.prop('type')).toBe('submit');
 		saveButton.simulate('click');

@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecipeEntryContainer renders an undefined recipe correctly 1`] = `
+<div
+  className="jumbotron"
+>
+  <h2>
+    Manage sushi Recipe
+     
+  </h2>
+  <hr />
+  <form>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        name="title"
+        onChange={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="description"
+      >
+        Description
+      </label>
+      <input
+        className="form-control"
+        name="description"
+        onChange={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="category"
+      >
+        Category
+      </label>
+      <select
+        className="form-control"
+        name="category"
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          value=""
+        >
+          select category
+        </option>
+      </select>
+      
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      id="save"
+      onClick={[Function]}
+      type="submit"
+    >
+      save
+    </button>
+    <button
+      className="btn btn-secondary"
+      disabled={false}
+      id="cancel"
+      onClick={[Function]}
+      type="button"
+    >
+      cancel
+    </button>
+  </form>
+</div>
+`;
+
+exports[`RecipeEntryContainer renders new recipe correctly 1`] = `
+<div
+  className="jumbotron"
+>
+  <h2>
+    Manage new Recipe
+     
+  </h2>
+  <hr />
+  <form>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        name="title"
+        onChange={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="description"
+      >
+        Description
+      </label>
+      <input
+        className="form-control"
+        name="description"
+        onChange={[Function]}
+        placeholder=""
+        type="text"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="category"
+      >
+        Category
+      </label>
+      <select
+        className="form-control"
+        name="category"
+        onChange={[Function]}
+        value=""
+      >
+        <option
+          value=""
+        >
+          select category
+        </option>
+      </select>
+      
+    </div>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      id="save"
+      onClick={[Function]}
+      type="submit"
+    >
+      save
+    </button>
+    <button
+      className="btn btn-secondary"
+      disabled={false}
+      id="cancel"
+      onClick={[Function]}
+      type="button"
+    >
+      cancel
+    </button>
+  </form>
+</div>
+`;

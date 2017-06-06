@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const RecipeForm = ({recipe, categories, onSave, onChange, onCancel, saving, errors}) => {
+const RecipeEntryView = ({recipe, categories, onSave, onChange, onCancel, saving, errors}) => {
 	return (
 		<form>
 			<TextInput
@@ -55,12 +55,12 @@ const RecipeForm = ({recipe, categories, onSave, onChange, onCancel, saving, err
 	);
 };
 
-RecipeForm.defaultProps = {
+RecipeEntryView.defaultProps = {
 	saving: false,
 	errors: {},
 }
 
-RecipeForm.propTypes = {
+RecipeEntryView.propTypes = {
 	recipe: PropTypes.objectOf(PropTypes.any).isRequired,
 	categories: PropTypes.arrayOf(PropTypes.objectOf).isRequired,
 	onSave: PropTypes.func.isRequired,
@@ -70,4 +70,4 @@ RecipeForm.propTypes = {
 	errors: PropTypes.objectOf(PropTypes.any),
 };
 
-export default RecipeForm;
+export default RecipeEntryView;
