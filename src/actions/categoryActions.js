@@ -2,6 +2,10 @@ import CategoryApi from '../api/mockCategoryApi';
 import * as actionTypes from './actionTypes';
 import { beginAjaxCall } from './ajaxStatusActions';
 
+/**
+ * actions
+ */
+
 export const loadCategoriesSuccess = (categories) => ({ // eslint-disable-line
 	type: actionTypes.LOAD_CATEGORIES_SUCCESS,
 	categories,

@@ -7,12 +7,6 @@ import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
  *
  */
 
-export const createRecipe = (recipe => ({ // eslint-disable-line
-	type: actionTypes.RECIPE_CREATE,
-	recipe,
-})
-);
-
 export const loadRecipesSuccess = (recipes) => ({ // eslint-disable-line
 	type: actionTypes.LOAD_RECIPES_SUCCESS,
 	recipes,
