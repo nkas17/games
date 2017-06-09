@@ -1,18 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant' // eslint-disable-line
-import thunk from 'redux-thunk';
-import rootReducer from '../reducers';
+/* eslint-disable global-require */
 
-const configureStore = (initialState) => {
-	// Add wrapper to enable redux dev tools
-	// @see https://github.com/zalmoxisus/redux-devtools-extension#12-advanced-store-setup
-
-	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-	return createStore(
-		rootReducer,
-		initialState,
-		composeEnhancers(applyMiddleware(thunk, reduxImmutableStateInvariant())));
-};
-
-export default configureStore;
+if (process.env.NODE_ENV === 'production') {
+	module.exports = require('./configureStore.prod');
+} else {
+	module.exports = require('./configureStore.dev');
+}

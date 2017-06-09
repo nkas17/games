@@ -5,6 +5,7 @@
  */
 const { resolve, join } = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -15,10 +16,9 @@ module.exports = {
 		],
 		extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
 	},
-	entry: [
-        // the entry point of our app
-		'./index.jsx',
-	],
+
+	entry: './index.jsx',
+
 	output: {
         // the output bundle
 		filename: 'bundle.js',
@@ -29,7 +29,7 @@ module.exports = {
 
 	context: resolve(__dirname, 'src'),
 
-	devtool: 'inline-source-map',
+	devtool: 'source-map',
 
 	module: {
 		rules: [
@@ -42,10 +42,10 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader',
-				],
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: ['css-loader'],
+				}),
 			},
 			{
 				test: /\.json$/,
@@ -74,6 +74,9 @@ module.exports = {
 		],
 	},
 	plugins: [
+		// optimizes order
+		new ExtractTextPlugin('styles.css'),
+
 		// // Moves the index.html file over and asset folder to the dist folder
 		new CopyWebpackPlugin([
 			// {output}/dist/file.txt

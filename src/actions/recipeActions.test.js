@@ -1,10 +1,24 @@
-import { createRecipeSuccess, updateRecipeSuccess, loadRecipesSuccess } from './recipeActions';
+import thunk from 'redux-thunk';
+import nock from 'nock';
+import configureMockStore from 'redux-mock-store';
+import {
+	// actions
+	createRecipeSuccess,
+	updateRecipeSuccess,
+	loadRecipesSuccess,
+	// thunks
+	loadRecipes,
+} from './recipeActions';
 import * as actionTypes from './actionTypes';
 
 /* eslint-disable no-undef */
 
+/**
+ * test actions
+ */
+
 describe('Recipe Actions', () => {
-			// arange
+	// arange - shared data
 	const recipes = [{
 		id: 'tacos',
 		title: 'tacos',
@@ -73,6 +87,39 @@ describe('Recipe Actions', () => {
 
 			// assert
 			expect(action).toEqual(expectedAction);
+		});
+	});
+});
+
+/**
+ * test thunks
+ */
+
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
+
+describe('Recipe Thunks', () => {
+	afterEach(() => {
+		nock.cleanAll();
+	});
+	it('should create BEGIN_AJAX_CALL and LOAD_RECIPES_SUCCESS when loading recipes', (done) => {
+		// Here's an example call to nock
+		// nock('http://example.com/');
+		//	.get('/recipes')
+		//	.reply(200, {body: {recipe: [{id:1, title:'A'}] }});
+
+		// arrange
+		const expectedActions = [
+			{ type: actionTypes.BEGIN_AJAX_CALL },
+			{ type: actionTypes.LOAD_RECIPES_SUCCESS, body: { recipes: [{ id: 'delicious-meal', title: 'Delicious Meal' }] } },
+		];
+
+		const store = mockStore({ recipes: [] }, expectedActions);
+		store.dispatch(loadRecipes()).then(() => {
+			const actions = store.getActions();
+			expect(actions[0].type).toEqual(actionTypes.BEGIN_AJAX_CALL);
+			expect(actions[1].type).toEqual(actionTypes.LOAD_RECIPES_SUCCESS);
+			done();
 		});
 	});
 });
