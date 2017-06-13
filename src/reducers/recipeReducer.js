@@ -14,6 +14,8 @@ const recipeReducer = (state = initialState.recipes, action) => {
 		return [...state.filter(recipe => recipe.id !== action.recipe.id),
 			Object.assign({}, action.recipe),
 		];
+	case actionTypes.DELETE_RECIPE_SUCCESS:
+		return [...state.filter(recipe => recipe.id !== action.recipe.id)];
 	case actionTypes.LOAD_RECIPES_SUCCESS:
 		return action.recipes;
 	default:

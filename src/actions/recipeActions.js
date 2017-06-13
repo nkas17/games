@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import RecipeApi from '../api/mockRecipeApi';
+import RecipeApi from '../api/RecipeApi';
 import { beginAjaxCall, ajaxCallError } from './ajaxStatusActions';
 
 /**
@@ -22,6 +22,11 @@ export const updateRecipeSuccess = (recipe) => ({ // eslint-disable-line
 	recipe,
 });
 
+export const deleteRecipeSuccess = (recipe) => ({ // eslint-disable-line
+	type: actionTypes.DELETE_RECIPE_SUCCESS,
+	recipe,
+});
+
 /**
  * thunks
  */
@@ -40,6 +45,17 @@ export const saveRecipe = recipe => (dispatch) => {
 	return RecipeApi.saveRecipe(recipe).then((savedRecipe) => {
 		recipe.id ? dispatch(updateRecipeSuccess(savedRecipe)) : // eslint-disable-line no-unused-expressions
 				dispatch(createRecipeSuccess(savedRecipe));
+	}).catch((error) => {
+		dispatch(ajaxCallError());
+		throw (error);
+	});
+};
+
+export const deleteRecipe = recipeId => (dispatch) => {
+	dispatch(beginAjaxCall());
+	return RecipeApi.deleteRecipe(recipeId).then((recipe) => {
+		// deletedRecipe.id ? dispatch(updateRecipeSuccess(deletedRecipe)) : // eslint-disable-line no-unused-expressions
+		dispatch(deleteRecipeSuccess(recipe));
 	}).catch((error) => {
 		dispatch(ajaxCallError());
 		throw (error);

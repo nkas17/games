@@ -5,7 +5,7 @@ import RecipeListRow from './RecipeListRow';
 /**
  * List of recipes
  */
-const RecipeList = ({ recipes }) => (
+const RecipeList = ({ recipes, deleteRecipe }) => (
 	<table className="table">
 		<thead>
 			<tr>
@@ -19,6 +19,7 @@ const RecipeList = ({ recipes }) => (
 				(<RecipeListRow
 					key={recipe.id}
 					recipe={recipe}
+					deleteRecipe={deleteRecipe}
 				/>))}
 		</tbody>
 	</table>
@@ -29,6 +30,11 @@ RecipeList.propTypes = {
 	 * list of recipes to display
 	 */
 	recipes: PropTypes.arrayOf(PropTypes.object).isRequired,
+
+	/**
+	 * function to delete a recipe
+	 */
+	deleteRecipe: PropTypes.func.isRequired,
 };
 
 export default RecipeList;
