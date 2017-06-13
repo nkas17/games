@@ -75,40 +75,84 @@ const replaceAll = (str, find, replace) => str.replace(new RegExp(find, 'g'), re
 // This would be performed on the server in a real app. Just stubbing in.
 const generateId = recipe => replaceAll(recipe.title, ' ', '-');
 
+const handleResult = (response) => {
+	if (response.status >= 200 && response.status < 300) {
+		return response.json().then((data) => {
+			console.log(data);
+			return data;
+		});
+	} else if (response.bodyUsed) {
+		return response.json().then((data) => {
+			const error = new Error(`Response error for ${response.url}`);
+			error.additionalData = data;
+			throw error;
+		});
+	}
+	throw new Error(`Response error for ${response.url}`);
+};
+
 class RecipeApi {
 	static getAllRecipes() {
-		return new Promise((resolve /* reject*/) => {
-			setTimeout(() => {
-				resolve(Object.assign([], recipes));
-			}, delay);
-		});
+		const db = process.env.NODE_ENV === 'production' ? 'recipes' : 'recipes-test';
+		const url = `https://api.mlab.com/api/1/databases/${db}/collections/recipes?apiKey=vtzkXhp1ptUbHzA6FVL_tSbINmUiqyKh`;
+		// /databases/{database}/collections/{collection}
+		const options = {
+			method: 'GET',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+		};
+
+		return fetch(url, options)
+		.then(handleResult);
+		// return new Promise((resolve /* reject*/) => {
+		// 	setTimeout(() => {
+		// 		resolve(Object.assign([], recipes));
+		// 	}, delay);
+		// });
 	}
 
 	static saveRecipe(recipe) {
-		const theRecipe = Object.assign({}, recipe); // to avoid manipulating object passed in.
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-        // Simulate server-side validation
-				const minRecipeTitleLength = 1;
-				if (theRecipe.title.length < minRecipeTitleLength) {
-					reject(`Title must be at least ${minRecipeTitleLength} characters.`);
-				}
+		const db = process.env.NODE_ENV === 'production' ? 'recipes' : 'recipes-test';
+		const url = `https://api.mlab.com/api/1/databases/${db}/collections/recipes?apiKey=vtzkXhp1ptUbHzA6FVL_tSbINmUiqyKh`;
+		// /databases/{database}/collections/{collection}
+		const options = {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(recipe),
+		};
 
-				if (theRecipe.id) {
-					const existingRecipeIndex = recipes.findIndex(a => a.id === theRecipe.id);
-					recipes.splice(existingRecipeIndex, 1, theRecipe);
-				} else {
-          // Just simulating creation here.
-          // The server would generate ids and watchHref's for new courses in a real app.
-          // Cloning so copy returned is passed by value rather than by reference.
-					theRecipe.id = generateId(theRecipe);
-					// recipe.watchHref = `http://www.pluralsight.com/courses/${course.id}`;
-					recipes.push(theRecipe);
-				}
+		return fetch(url, options)
+		.then(handleResult);
 
-				resolve(theRecipe);
-			}, delay);
-		});
+		// const theRecipe = Object.assign({}, recipe); // to avoid manipulating object passed in.
+		// return new Promise((resolve, reject) => {
+		// 	setTimeout(() => {
+    //     // Simulate server-side validation
+		// 		const minRecipeTitleLength = 1;
+		// 		if (theRecipe.title.length < minRecipeTitleLength) {
+		// 			reject(`Title must be at least ${minRecipeTitleLength} characters.`);
+		// 		}
+
+		// 		if (theRecipe.id) {
+		// 			const existingRecipeIndex = recipes.findIndex(a => a.id === theRecipe.id);
+		// 			recipes.splice(existingRecipeIndex, 1, theRecipe);
+		// 		} else {
+    //       // Just simulating creation here.
+    //       // The server would generate ids and watchHref's for new courses in a real app.
+    //       // Cloning so copy returned is passed by value rather than by reference.
+		// 			theRecipe.id = generateId(theRecipe);
+		// 			// recipe.watchHref = `http://www.pluralsight.com/courses/${course.id}`;
+		// 			recipes.push(theRecipe);
+		// 		}
+
+		// 		resolve(theRecipe);
+		// 	}, delay);
+		// });
 	}
 
 	static deleteRecipe(recipeId) {
