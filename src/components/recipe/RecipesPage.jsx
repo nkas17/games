@@ -21,13 +21,16 @@ class RecipePage extends React.Component { //eslint-disable-line
 	}
 
 	_deleteRecipe(recipeId) {
-		console.log(`deleted recipe id - ${recipeId}`);
-
 		event.preventDefault();
 
-		this.props.actions.deleteRecipe(recipeId)
-			.then(() => toastr.success('Recipe deleted'))
-			.catch(error => toastr.error(error));
+		if (confirm('Click "Ok" if you are sure you would like to delete this recipe, otherwise "Cancel".')) {
+			console.log(`deleted recipe id - ${recipeId}`);
+
+
+			this.props.actions.deleteRecipe(recipeId)
+				.then(() => toastr.success('Recipe deleted'))
+				.catch(error => toastr.error(error));
+		}
 	}
 
 	render() {

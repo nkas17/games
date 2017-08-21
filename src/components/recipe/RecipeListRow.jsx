@@ -10,12 +10,14 @@ const RecipeListRow = ({ recipe, deleteRecipe }) => (
 		<td>&nbsp;</td>
 		<td><Link to={`recipe/${recipe.id}`} >{recipe.title}</Link></td>
 		<td>{recipe.description}</td>
-		<td><input
-			type="button"
-			value="delete recipe"
-			className="btn btn-secondary"
-			onClick={() => deleteRecipe(recipe._id.$oid)}
-		/></td>
+		<td>
+			<input
+				type="button"
+				value="delete"
+				className="btn btn-link"
+				onClick={() => deleteRecipe(recipe._id.$oid)}
+			/>
+		</td>
 	</tr>
 	);
 

@@ -68,7 +68,7 @@ export class RecipeEntryContainer extends React.Component {
 	_redirectOnSave() {
 		this.setState({ saving: false });
 		toastr.success('Recipe saved');
-		this.props.history.push('/recipe');
+		this.props.history.push(`/recipe/${this.props.recipe.id}`);
 	}
 
 	_cancelRecipe() {
@@ -77,7 +77,7 @@ export class RecipeEntryContainer extends React.Component {
 
 	_redirectOnCancel() {
 		toastr.success('Recipe cancelled');
-		this.props.history.push('/recipe');
+		this.props.history.push(`/recipe/${this.props.recipe.id}`);
 	}
 
 	render() {

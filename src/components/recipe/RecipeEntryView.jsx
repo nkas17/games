@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TextInput from '../common/TextInput';
+import TextArea from '../common/TextArea';
 import SelectInput from '../common/SelectInput';
 
 const RecipeEntryView = ({ recipe, categories, onSave, onChange, onCancel, saving, errors }) => (
@@ -19,6 +20,25 @@ const RecipeEntryView = ({ recipe, categories, onSave, onChange, onCancel, savin
 			value={recipe.description}
 			onChange={onChange}
 			error={errors.description}
+		/>
+
+
+		<TextArea
+			name="ingredients"
+			label="Ingredient List"
+			rows="10"
+			value={recipe.ingredients}
+			onChange={onChange}
+			error={errors.ingredients}
+		/>
+
+		<TextArea
+			name="directions"
+			label="Directions"
+			rows="10"
+			value={recipe.directions}
+			onChange={onChange}
+			error={errors.directions}
 		/>
 
 		<SelectInput
