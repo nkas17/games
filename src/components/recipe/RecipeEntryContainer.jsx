@@ -8,6 +8,8 @@ import * as recipeActions from '../../actions/recipeActions';
 import { categoriesFormattedForSelectInput } from '../../selectors/selectors';
 import RecipeEntryView from './RecipeEntryView';
 
+const replaceAll = (str, find, replace) => str.replace(new RegExp(find, 'g'), replace);
+
 export class RecipeEntryContainer extends React.Component {
 	constructor(props, context) {
 		super(props, context);
@@ -57,6 +59,7 @@ export class RecipeEntryContainer extends React.Component {
 		}
 
 		this.setState({ saving: true });
+		if (this.state.recipe.id === undefined) this.state.recipe.id = replaceAll(this.state.recipe.title, ' ', '-');
 		this.props.actions.saveRecipe(this.state.recipe)
 			.then(() => this._redirectOnSave())
 			.catch((error) => {
@@ -68,7 +71,7 @@ export class RecipeEntryContainer extends React.Component {
 	_redirectOnSave() {
 		this.setState({ saving: false });
 		toastr.success('Recipe saved');
-		this.props.history.push(`/recipe/${this.props.recipe.id}`);
+		this.props.history.push(`/recipe/${this.state.recipe.id}`);
 	}
 
 	_cancelRecipe() {
@@ -77,7 +80,8 @@ export class RecipeEntryContainer extends React.Component {
 
 	_redirectOnCancel() {
 		toastr.success('Recipe cancelled');
-		this.props.history.push(`/recipe/${this.props.recipe.id}`);
+		if (this.props.recipe.id === undefined) this.props.history.push('/recipe');
+		else this.props.history.push(`/recipe/${this.props.recipe.id}`);
 	}
 
 	render() {

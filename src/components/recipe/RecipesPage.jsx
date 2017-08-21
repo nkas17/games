@@ -17,7 +17,7 @@ class RecipePage extends React.Component { //eslint-disable-line
 		this._deleteRecipe = this._deleteRecipe.bind(this);
 	}
 	_redirectToAddRecipePage() {
-		this.props.history.push('/recipe/new');
+		this.props.history.push('/recipe/new/edit');
 	}
 
 	_deleteRecipe(recipeId) {

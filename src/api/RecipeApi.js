@@ -15,8 +15,6 @@ const handleResult = (response) => {
 	throw new Error(`Response error for ${response.url}`);
 };
 
-const replaceAll = (str, find, replace) => str.replace(new RegExp(find, 'g'), replace);
-
 class RecipeApi {
 	static getAllRecipes() {
 		const db = process.env.NODE_ENV === 'production' ? 'recipes' : 'recipes-test';
@@ -35,7 +33,6 @@ class RecipeApi {
 
 	static saveRecipe(recipe) {
 		const theRecipe = Object.assign({}, recipe); // to avoid manipulating object passed in.
-		theRecipe.id = replaceAll(theRecipe.title, ' ', '-');
 		const db = process.env.NODE_ENV === 'production' ? 'recipes' : 'recipes-test';
 		const url = `https://api.mlab.com/api/1/databases/${db}/collections/recipes?apiKey=vtzkXhp1ptUbHzA6FVL_tSbINmUiqyKh`;
 		const options = {
