@@ -12,6 +12,7 @@ const RecipeList = ({ recipes, deleteRecipe }) => (
 				<th>&nbsp;</th>
 				<th>title</th>
 				<th>description</th>
+				<th>&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>

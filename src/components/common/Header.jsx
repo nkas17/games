@@ -15,6 +15,10 @@ const Header = ({ loading = true }) => (
 			{' | '}
 			<Link to="/recipe" >recipes</Link>
 			{' | '}
+			<Link to="/mealList" >meals</Link>
+			{' | '}
+			<Link to="/groceryList" >groceries</Link>
+			{' | '}
 			<Link to="/about" >about</Link>
 			{loading && <LoadingDots interval={200} dots={10} />}
 		</nav>

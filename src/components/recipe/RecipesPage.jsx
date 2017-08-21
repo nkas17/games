@@ -38,17 +38,25 @@ class RecipePage extends React.Component { //eslint-disable-line
 		return (
 			<div className="jumbotron">
 				<h2>recipes</h2>
+				<input
+					type="submit"
+					value="add"
+					className="btn btn-link"
+					onClick={this._redirectToAddRecipePage}
+				/>
 				<hr />
 				<RecipeList
 					recipes={recipes}
 					deleteRecipe={this._deleteRecipe}
 				/>
-				<input
-					type="submit"
-					value="add recipe"
-					className="btn btn-primary"
-					onClick={this._redirectToAddRecipePage}
-				/>
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-sm-12">
+							<button type="button" className="btn btn-primary">Add to Meal List</button>
+							<button type="button" className="btn btn-primary">View Meal List</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
