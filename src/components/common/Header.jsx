@@ -1,36 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import LoadingDots from './LoadingDots';
 
 /**
  * Common Header component
  */
-const Header = ({ loading = true }) => (
+const Header = () => (
 	<header>
-		<h1 className="page-header">{'come and eat!'}</h1>
+		<h1 className="page-header">{'tic tac toe'}</h1>
 		<nav>
 			<Link to="/" >home</Link>
 			{' | '}
-			<Link to="/recipe" >recipes</Link>
-			{' | '}
-			<Link to="/mealList" >meals</Link>
-			{' | '}
-			<Link to="/groceryList" >groceries</Link>
+			<Link to="/play" >play</Link>
 			{' | '}
 			<Link to="/about" >about</Link>
-			{loading && <LoadingDots interval={200} dots={10} />}
 		</nav>
 	</header>
 );
 
-Header.propTypes = {
-	loading: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({
-	loading: state.numAjaxCallsInProgress > 0,
-});
-
-export default connect(mapStateToProps)(Header);
+export default Header;
