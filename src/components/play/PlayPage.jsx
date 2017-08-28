@@ -1,12 +1,11 @@
 import React from 'react';
+import Board from './Board';
 
 const PlayPage = () => (
 	<div className="jumbotron">
-		<h2>play</h2>
+		<h2>tic tac toe</h2>
 		<hr />
-		<p>
-			coming soon...
-		</p>
+		<Board />
 	</div>
 );
 

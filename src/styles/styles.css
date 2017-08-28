@@ -62,3 +62,43 @@
 	font-family: 'Flex Display', Helvetica, Arial, sans-serif;
 	font-weight: bold;
 }*/
+
+.board {
+	background-color: whitesmoke;
+	padding: 5px;
+}
+.board.board__winner .square{
+	/* background-color: gold; */
+}
+
+@media (min-width: 10px) {
+	.board .col-md-4 {
+		padding: 0;
+	}
+}
+
+.board .row {
+	margin: 0;
+}
+
+.board .square {
+	border: 1px dotted gray;
+	padding: 120px;
+	margin: 0;
+	cursor: pointer;
+}
+
+.board .square.square__o {
+	background-image: url('../images/neon_o.png');
+	background-size: cover;
+}
+
+.board .square.square__x {
+	background-image: url('../images/neon_x.png');
+	background-size: cover;
+}
+
+.board .stats {
+	border: 1px dotted gray;
+	padding: 10px;
+}
