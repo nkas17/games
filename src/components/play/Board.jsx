@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import Square from './Square';
 import Stats from './Stats';
 
@@ -14,6 +15,7 @@ class Board extends React.Component {
 				['...', '...', '...'],
 				['...', '...', '...']],
 			winner: false,
+			catsGame: false,
 		};
 
 		this._reset = this._reset.bind(this);
@@ -29,6 +31,7 @@ class Board extends React.Component {
 				['...', '...', '...'],
 				['...', '...', '...']],
 			winner: false,
+			catsGame: false,
 		}));
 	}
 
@@ -122,6 +125,14 @@ class Board extends React.Component {
 		);
 	}
 
+	_isACatsGame() {
+		return (
+			(_.indexOf(this.state.values[0], '...') === -1 &&
+			_.indexOf(this.state.values[1], '...') === -1 &&
+			_.indexOf(this.state.values[2], '...') === -1) &&
+			!this._isAWinner());
+	}
+
 	_onClick(id) {
 		if (!this.state.winner) {
 			this.setState((prevState) => {
@@ -134,6 +145,7 @@ class Board extends React.Component {
 					xTurn: !prevState.xTurn,
 					values,
 					winner: this._isAWinner(),
+					catsGame: this._isACatsGame(),
 				});
 			});
 		}
@@ -142,7 +154,7 @@ class Board extends React.Component {
 	render() {
 		let rowNum = -1;
 		return (
-			<div className={`board ${this._isAWinner() ? 'board__winner' : ''}`}>
+			<div className={`board ${this.state.winner ? 'board__winner' : ''}`}>
 				<div className="row">
 					<div className="col-md-6">
 						{this.state.values.map((row) => {
@@ -157,10 +169,15 @@ class Board extends React.Component {
 						})}
 					</div>
 					<div className="col-md-6">
-						<Stats
-							reset={this._reset}
-							winner={this.state.winner}
-						/>
+						<div className="row">
+							<div className="col-md-12">
+								<Stats
+									reset={this._reset}
+									winner={this.state.winner}
+									catsGame={this.state.catsGame}
+								/>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

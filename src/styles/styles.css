@@ -67,8 +67,10 @@
 	background-color: whitesmoke;
 	padding: 5px;
 }
-.board.board__winner .square{
-	/* background-color: gold; */
+
+.board.board__winner {
+	background-image: url('../images/confetti-square.gif');
+	background-size: cover;
 }
 
 @media (min-width: 10px) {
@@ -89,12 +91,29 @@
 }
 
 .board .square.square__o {
-	background-image: url('../images/neon_o.png');
+	background-image: url('../images/soccer_o.png');
+	background-size: cover;
+}
+
+.board.board__winner .square.square__o{
+	background-image: url('../images/confetti-square.gif'), url('../images/soccer_o.png');
+	background-repeat: repeat-x, repeat;
 	background-size: cover;
 }
 
 .board .square.square__x {
-	background-image: url('../images/neon_x.png');
+	background-image: url('../images/blue_x.png');
+	background-size: cover;
+}
+
+.board.board__winner .square.square__x{
+	background-image: url('../images/confetti-square.gif'), url('../images/blue_x.png');
+	background-repeat: repeat-x, repeat;
+	background-size: cover;
+}
+
+.board.board__winner .square{
+	background-image: url('../images/confetti-square.gif');
 	background-size: cover;
 }
 
@@ -102,3 +121,16 @@
 	border: 1px dotted gray;
 	padding: 10px;
 }
+
+.board.board__winner .stats{
+	background-image: url('../images/confetti-square.gif');
+	background-size: cover;
+}
+
+.board .board__cats-game {
+	padding: 197px;
+	margin: 0;
+	background-image: url('../images/cat.png');
+	background-size: cover;
+}
+
