@@ -10,7 +10,7 @@ class Square extends React.Component {
 							this.props.onClick(this.props.id);
 						}
 					}}
-					className={`square ${(this.props.value === 'O' && 'square__o') || (this.props.value === 'X' && 'square__x')}`}
+					className={`square ${(this.props.value === 'O' && `square__o ${this.props.oOption}`) || (this.props.value === 'X' && `square__x ${this.props.xOption}`)}`}
 				/>
 			</div>
 		);

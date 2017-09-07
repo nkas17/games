@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Stats = ({ reset, winner, catsGame }) => (
+const Stats = ({ clearBoard, winner, catsGame }) => (
 	<div className="stats">
-		<button className="btn btn-secondary" onClick={reset}>reset</button>
+		<button className="btn btn-secondary" onClick={clearBoard}>clear board</button>
 		{winner &&
 			<div>
 				<h2>Congrats we have a winner</h2>

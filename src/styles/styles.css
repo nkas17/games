@@ -90,36 +90,95 @@
 	cursor: pointer;
 }
 
+
+/*O*/
 .board .square.square__o {
-	background-image: url('../images/soccer_o.png');
 	background-size: cover;
 }
 
 .board.board__winner .square.square__o{
-	background-image: url('../images/confetti-square.gif'), url('../images/soccer_o.png');
 	background-repeat: repeat-x, repeat;
 	background-size: cover;
 }
 
+/*flower*/
+.board .square.square__o.flower {
+	background-image: url('../images/flower_o.png');
+}
+.board.board__winner .square.square__o.flower{
+	background-image: url('../images/confetti-square.gif'), url('../images/flower_o.png');
+}
+/*neon*/
+.board .square.square__o.neon {
+	background-image: url('../images/neon_o.png');
+}
+.board.board__winner .square.square__o.neon{
+	background-image: url('../images/confetti-square.gif'), url('../images/neon_o.png');
+}
+
+/*soccer*/
+.board .square.square__o.soccer {
+	background-image: url('../images/soccer_o.png');
+}
+.board.board__winner .square.square__o.soccer{
+	background-image: url('../images/confetti-square.gif'), url('../images/soccer_o.png');
+}
+/*rainbow*/
+.board .square.square__o.rainbow {
+	background-image: url('../images/rainbow_o.png');
+}
+.board.board__winner .square.square__o.rainbow{
+	background-image: url('../images/confetti-square.gif'), url('../images/rainbow_o.png');
+}
+
+/*X*/
 .board .square.square__x {
-	background-image: url('../images/blue_x.png');
 	background-size: cover;
 }
 
 .board.board__winner .square.square__x{
-	background-image: url('../images/confetti-square.gif'), url('../images/blue_x.png');
 	background-repeat: repeat-x, repeat;
 	background-size: cover;
 }
+
+/*donut*/
+.board .square.square__x.donut{
+	background-image: url('../images/donut_x_2.png');
+}
+
+.board.board__winner .square.square__x.donut{
+	background-image: url('../images/confetti-square.gif'), url('../images/donut_x_2.png');
+}
+
+/*neon*/
+.board .square.square__x.neon{
+	background-image: url('../images/neon_x.png');
+}
+
+.board.board__winner .square.square__x.neon{
+	background-image: url('../images/confetti-square.gif'), url('../images/neon_x.png');
+}
+
+/*blue*/
+.board .square.square__x.blue{
+	background-image: url('../images/blue_x.png');
+}
+
+.board.board__winner .square.square__x.blue{
+	background-image: url('../images/confetti-square.gif'), url('../images/blue_x.png');
+}
+
 
 .board.board__winner .square{
 	background-image: url('../images/confetti-square.gif');
 	background-size: cover;
 }
 
+.board .options,
 .board .stats {
 	border: 1px dotted gray;
 	padding: 10px;
+	margin-bottom: 5px;
 }
 
 .board.board__winner .stats{

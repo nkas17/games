@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Square from './Square';
 import Stats from './Stats';
+import Options from './Options';
 
 
 class Board extends React.Component {
@@ -10,6 +11,8 @@ class Board extends React.Component {
 		this.state = {
 			newGame: true,
 			xTurn: true,
+			xTheme: 'neon',
+			oTheme: 'neon',
 			values: [
 				['...', '...', '...'],
 				['...', '...', '...'],
@@ -20,6 +23,8 @@ class Board extends React.Component {
 
 		this._reset = this._reset.bind(this);
 		this._onClick = this._onClick.bind(this);
+		this._handleThemeXChange = this._handleThemeXChange.bind(this);
+		this._handleThemeOChange = this._handleThemeOChange.bind(this);
 	}
 
 	_reset() {
@@ -151,6 +156,20 @@ class Board extends React.Component {
 		}
 	}
 
+	_handleThemeXChange(event) {
+		const xTheme = event.target.value;
+		this.setState(() => ({
+			xTheme,
+		}));
+	}
+
+	_handleThemeOChange(event) {
+		const oTheme = event.target.value;
+		this.setState(() => ({
+			oTheme,
+		}));
+	}
+
 	render() {
 		let rowNum = -1;
 		return (
@@ -162,7 +181,7 @@ class Board extends React.Component {
 							return (
 								<div key={rowNum++} className="row">
 									{row.map(col => (
-										<Square key={colNum++} id={`${rowNum}${colNum}`} value={col} onClick={this._onClick} />
+										<Square key={colNum++} id={`${rowNum}${colNum}`} value={col} oOption={this.state.oTheme} xOption={this.state.xTheme} onClick={this._onClick} />
 									))}
 								</div>
 							);
@@ -171,8 +190,29 @@ class Board extends React.Component {
 					<div className="col-md-6">
 						<div className="row">
 							<div className="col-md-12">
+								<Options
+									handleThemeXChange={this._handleThemeXChange}
+									xValue={this.state.xTheme}
+									xOptions={[
+										{ value: 'donut', text: 'donut' },
+										{ value: 'neon', text: 'neon' },
+										{ value: 'blue', text: 'blue' },
+									]}
+									handleThemeOChange={this._handleThemeOChange}
+									oValue={this.state.oTheme}
+									oOptions={[
+										{ value: 'flower', text: 'flower' },
+										{ value: 'neon', text: 'neon' },
+										{ value: 'soccer', text: 'soccer' },
+										{ value: 'rainbow', text: 'rainbow' },
+									]}
+								/>
+							</div>
+						</div>
+						<div className="row">
+							<div className="col-md-12">
 								<Stats
-									reset={this._reset}
+									clearBoard={this._reset}
 									winner={this.state.winner}
 									catsGame={this.state.catsGame}
 								/>
