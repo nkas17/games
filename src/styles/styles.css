@@ -123,12 +123,21 @@
 .board.board__winner .square.square__o.soccer{
 	background-image: url('../images/confetti-square.gif'), url('../images/soccer_o.png');
 }
+
 /*rainbow*/
 .board .square.square__o.rainbow {
 	background-image: url('../images/rainbow_o.png');
 }
 .board.board__winner .square.square__o.rainbow{
 	background-image: url('../images/confetti-square.gif'), url('../images/rainbow_o.png');
+}
+
+/*pineapple*/
+.board .square.square__o.pineapple {
+	background-image: url('../images/pineapple_o.png');
+}
+.board.board__winner .square.square__o.pineapple{
+	background-image: url('../images/confetti-square.gif'), url('../images/pineapple_o.png');
 }
 
 /*X*/
@@ -166,6 +175,15 @@
 
 .board.board__winner .square.square__x.blue{
 	background-image: url('../images/confetti-square.gif'), url('../images/blue_x.png');
+}
+
+/*blob*/
+.board .square.square__x.blob{
+	background-image: url('../images/blob_x.png');
+}
+
+.board.board__winner .square.square__x.blob{
+	background-image: url('../images/confetti-square.gif'), url('../images/blob_x.png');
 }
 
 

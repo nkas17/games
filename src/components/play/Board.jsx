@@ -197,6 +197,7 @@ class Board extends React.Component {
 										{ value: 'donut', text: 'donut' },
 										{ value: 'neon', text: 'neon' },
 										{ value: 'blue', text: 'blue' },
+										{ value: 'blob', text: 'blob' },
 									]}
 									handleThemeOChange={this._handleThemeOChange}
 									oValue={this.state.oTheme}
@@ -205,6 +206,7 @@ class Board extends React.Component {
 										{ value: 'neon', text: 'neon' },
 										{ value: 'soccer', text: 'soccer' },
 										{ value: 'rainbow', text: 'rainbow' },
+										{ value: 'pineapple', text: 'pineapple' },
 									]}
 								/>
 							</div>
