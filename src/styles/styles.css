@@ -85,7 +85,7 @@
 
 .board .square {
 	border: 1px dotted gray;
-	padding: 120px;
+	padding: 50%;
 	margin: 0;
 	cursor: pointer;
 }
@@ -205,9 +205,23 @@
 }
 
 .board .board__cats-game {
-	padding: 197px;
+	padding: 29%;
 	margin: 0;
 	background-image: url('../images/cat.png');
 	background-size: cover;
 }
 
+.col-md-6{
+	width:100%;
+}
+
+.col-md-4{
+	width: 33%;
+	float: left;
+}
+
+@media (min-width: 992px){
+	.col-md-6{
+		width: 50%;
+	}
+}

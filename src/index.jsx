@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 import App from './components/App';
-import './styles/styles.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
+import './styles/styles.css';
 import './images/favicon.png';
 
 
@@ -18,7 +18,7 @@ const render = () => {
 				<App />
 			</BrowserRouter>
 		</AppContainer>,
-    document.getElementById('app'));
+		document.getElementById('app'));
 };
 
 render();
