@@ -17,9 +17,7 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true,
-    "jquery": true,
-    "mocha": true
+    "node": true
   },
   "rules":{
     "indent": ["error", "tab"],
@@ -32,7 +30,6 @@
     "no-underscore-dangle": "off",
     "linebreak-style": ["error", "unix"],
     "no-plusplus": "off",
-    "jsx-a11y/no-static-element-interactions": "warn",
     "func-names": "error",
     "func-style": ["error", "expression"]
   }
