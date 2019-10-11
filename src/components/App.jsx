@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './home/HomePage';
-import PlayPage from './play/PlayPage';
+import PlayPage from './tictactoe/PlayPage';
+import PlayBlackjackPage from './blackjack/PlayPage';
 import AboutPage from './about/AboutPage';
 import Header from './common/Header';
 
@@ -16,7 +17,8 @@ class App extends React.Component { // eslint-disable-line
 				<main>
 					<Switch>
 						<Route exact path="/" component={HomePage} />
-						<Route exact path="/play" component={PlayPage} />
+						<Route exact path="/tictactoe" component={PlayPage} />
+						<Route exact path="/blackjack" component={PlayBlackjackPage} />
 						<Route exact path="/about" component={AboutPage} />
 					</Switch>
 				</main>

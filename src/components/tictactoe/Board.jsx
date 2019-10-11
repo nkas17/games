@@ -43,28 +43,28 @@ class Board extends React.Component {
 	_isXColWinner() {
 		return (
 			(this.state.values[0][0] === 'X' &&
-			this.state.values[1][0] === 'X' &&
-			this.state.values[2][0] === 'X') ||
+				this.state.values[1][0] === 'X' &&
+				this.state.values[2][0] === 'X') ||
 			(this.state.values[0][1] === 'X' &&
-			this.state.values[1][1] === 'X' &&
-			this.state.values[2][1] === 'X') ||
+				this.state.values[1][1] === 'X' &&
+				this.state.values[2][1] === 'X') ||
 			(this.state.values[0][2] === 'X' &&
-			this.state.values[1][2] === 'X' &&
-			this.state.values[2][2] === 'X')
+				this.state.values[1][2] === 'X' &&
+				this.state.values[2][2] === 'X')
 		);
 	}
 
 	_isOColWinner() {
 		return (
 			(this.state.values[0][0] === 'O' &&
-			this.state.values[1][0] === 'O' &&
-			this.state.values[2][0] === 'O') ||
+				this.state.values[1][0] === 'O' &&
+				this.state.values[2][0] === 'O') ||
 			(this.state.values[0][1] === 'O' &&
-			this.state.values[1][1] === 'O' &&
-			this.state.values[2][1] === 'O') ||
+				this.state.values[1][1] === 'O' &&
+				this.state.values[2][1] === 'O') ||
 			(this.state.values[0][2] === 'O' &&
-			this.state.values[1][2] === 'O' &&
-			this.state.values[2][2] === 'O')
+				this.state.values[1][2] === 'O' &&
+				this.state.values[2][2] === 'O')
 		);
 	}
 
@@ -72,50 +72,50 @@ class Board extends React.Component {
 	_isXRowWinner() {
 		return (
 			(this.state.values[0][0] === 'X' &&
-			this.state.values[0][1] === 'X' &&
-			this.state.values[0][2] === 'X') ||
+				this.state.values[0][1] === 'X' &&
+				this.state.values[0][2] === 'X') ||
 			(this.state.values[1][0] === 'X' &&
-			this.state.values[1][1] === 'X' &&
-			this.state.values[1][2] === 'X') ||
+				this.state.values[1][1] === 'X' &&
+				this.state.values[1][2] === 'X') ||
 			(this.state.values[2][0] === 'X' &&
-			this.state.values[2][1] === 'X' &&
-			this.state.values[2][2] === 'X')
+				this.state.values[2][1] === 'X' &&
+				this.state.values[2][2] === 'X')
 		);
 	}
 
 	_isORowWinner() {
 		return (
 			(this.state.values[0][0] === 'O' &&
-			this.state.values[0][1] === 'O' &&
-			this.state.values[0][2] === 'O') ||
+				this.state.values[0][1] === 'O' &&
+				this.state.values[0][2] === 'O') ||
 			(this.state.values[1][0] === 'O' &&
-			this.state.values[1][1] === 'O' &&
-			this.state.values[1][2] === 'O') ||
+				this.state.values[1][1] === 'O' &&
+				this.state.values[1][2] === 'O') ||
 			(this.state.values[2][0] === 'O' &&
-			this.state.values[2][1] === 'O' &&
-			this.state.values[2][2] === 'O')
+				this.state.values[2][1] === 'O' &&
+				this.state.values[2][2] === 'O')
 		);
 	}
 
 	_isODiaganolWinner() {
 		return (
 			(this.state.values[0][0] === 'O' &&
-			this.state.values[1][1] === 'O' &&
-			this.state.values[2][2] === 'O') ||
+				this.state.values[1][1] === 'O' &&
+				this.state.values[2][2] === 'O') ||
 			(this.state.values[0][2] === 'O' &&
-			this.state.values[1][1] === 'O' &&
-			this.state.values[2][0] === 'O')
+				this.state.values[1][1] === 'O' &&
+				this.state.values[2][0] === 'O')
 		);
 	}
 
 	_isXDiaganolWinner() {
 		return (
 			(this.state.values[0][0] === 'X' &&
-			this.state.values[1][1] === 'X' &&
-			this.state.values[2][2] === 'X') ||
+				this.state.values[1][1] === 'X' &&
+				this.state.values[2][2] === 'X') ||
 			(this.state.values[0][2] === 'X' &&
-			this.state.values[1][1] === 'X' &&
-			this.state.values[2][0] === 'X')
+				this.state.values[1][1] === 'X' &&
+				this.state.values[2][0] === 'X')
 		);
 	}
 
@@ -133,8 +133,8 @@ class Board extends React.Component {
 	_isACatsGame() {
 		return (
 			(_.indexOf(this.state.values[0], '...') === -1 &&
-			_.indexOf(this.state.values[1], '...') === -1 &&
-			_.indexOf(this.state.values[2], '...') === -1) &&
+				_.indexOf(this.state.values[1], '...') === -1 &&
+				_.indexOf(this.state.values[2], '...') === -1) &&
 			!this._isAWinner());
 	}
 

@@ -16,7 +16,7 @@ module.exports = {
 	},
 	entry: [
         // the entry point of our app
-		'./index.jsx',
+		'index.jsx',
 	],
 	output: {
         // the output bundle
