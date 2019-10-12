@@ -1,7 +1,14 @@
 import React from 'react';
 import SelectInput from '../common/SelectInput';
 
-const Options = ({ handleThemeXChange, xValue, xOptions, handleThemeOChange, oValue, oOptions }) => (
+const Options = ({
+	handleThemeXChange,
+	xValue,
+	xOptions,
+	handleThemeOChange,
+	oValue,
+	oOptions,
+}) => (
 	<div className="options">
 		<p>options</p>
 		<SelectInput

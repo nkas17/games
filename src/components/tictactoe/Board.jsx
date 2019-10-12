@@ -4,7 +4,6 @@ import Square from './Square';
 import Stats from './Stats';
 import Options from './Options';
 
-
 class Board extends React.Component {
 	constructor() {
 		super();
@@ -16,7 +15,8 @@ class Board extends React.Component {
 			values: [
 				['...', '...', '...'],
 				['...', '...', '...'],
-				['...', '...', '...']],
+				['...', '...', '...'],
+			],
 			winner: false,
 			catsGame: false,
 		};
@@ -34,88 +34,62 @@ class Board extends React.Component {
 			values: [
 				['...', '...', '...'],
 				['...', '...', '...'],
-				['...', '...', '...']],
+				['...', '...', '...'],
+			],
 			winner: false,
 			catsGame: false,
 		}));
 	}
 
 	_isXColWinner() {
+		const { values } = this.state;
 		return (
-			(this.state.values[0][0] === 'X' &&
-				this.state.values[1][0] === 'X' &&
-				this.state.values[2][0] === 'X') ||
-			(this.state.values[0][1] === 'X' &&
-				this.state.values[1][1] === 'X' &&
-				this.state.values[2][1] === 'X') ||
-			(this.state.values[0][2] === 'X' &&
-				this.state.values[1][2] === 'X' &&
-				this.state.values[2][2] === 'X')
+			(values[0][0] === 'X' && values[1][0] === 'X' && values[2][0] === 'X') ||
+			(values[0][1] === 'X' && values[1][1] === 'X' && values[2][1] === 'X') ||
+			(values[0][2] === 'X' && values[1][2] === 'X' && values[2][2] === 'X')
 		);
 	}
 
 	_isOColWinner() {
+		const { values } = this.state;
 		return (
-			(this.state.values[0][0] === 'O' &&
-				this.state.values[1][0] === 'O' &&
-				this.state.values[2][0] === 'O') ||
-			(this.state.values[0][1] === 'O' &&
-				this.state.values[1][1] === 'O' &&
-				this.state.values[2][1] === 'O') ||
-			(this.state.values[0][2] === 'O' &&
-				this.state.values[1][2] === 'O' &&
-				this.state.values[2][2] === 'O')
+			(values[0][0] === 'O' && values[1][0] === 'O' && values[2][0] === 'O') ||
+			(values[0][1] === 'O' && values[1][1] === 'O' && values[2][1] === 'O') ||
+			(values[0][2] === 'O' && values[1][2] === 'O' && values[2][2] === 'O')
 		);
 	}
 
-
 	_isXRowWinner() {
+		const { values } = this.state;
 		return (
-			(this.state.values[0][0] === 'X' &&
-				this.state.values[0][1] === 'X' &&
-				this.state.values[0][2] === 'X') ||
-			(this.state.values[1][0] === 'X' &&
-				this.state.values[1][1] === 'X' &&
-				this.state.values[1][2] === 'X') ||
-			(this.state.values[2][0] === 'X' &&
-				this.state.values[2][1] === 'X' &&
-				this.state.values[2][2] === 'X')
+			(values[0][0] === 'X' && values[0][1] === 'X' && values[0][2] === 'X') ||
+			(values[1][0] === 'X' && values[1][1] === 'X' && values[1][2] === 'X') ||
+			(values[2][0] === 'X' && values[2][1] === 'X' && values[2][2] === 'X')
 		);
 	}
 
 	_isORowWinner() {
+		const { values } = this.state;
 		return (
-			(this.state.values[0][0] === 'O' &&
-				this.state.values[0][1] === 'O' &&
-				this.state.values[0][2] === 'O') ||
-			(this.state.values[1][0] === 'O' &&
-				this.state.values[1][1] === 'O' &&
-				this.state.values[1][2] === 'O') ||
-			(this.state.values[2][0] === 'O' &&
-				this.state.values[2][1] === 'O' &&
-				this.state.values[2][2] === 'O')
+			(values[0][0] === 'O' && values[0][1] === 'O' && values[0][2] === 'O') ||
+			(values[1][0] === 'O' && values[1][1] === 'O' && values[1][2] === 'O') ||
+			(values[2][0] === 'O' && values[2][1] === 'O' && values[2][2] === 'O')
 		);
 	}
 
 	_isODiaganolWinner() {
+		const { values } = this.state;
 		return (
-			(this.state.values[0][0] === 'O' &&
-				this.state.values[1][1] === 'O' &&
-				this.state.values[2][2] === 'O') ||
-			(this.state.values[0][2] === 'O' &&
-				this.state.values[1][1] === 'O' &&
-				this.state.values[2][0] === 'O')
+			(values[0][0] === 'O' && values[1][1] === 'O' && values[2][2] === 'O') ||
+			(values[0][2] === 'O' && values[1][1] === 'O' && values[2][0] === 'O')
 		);
 	}
 
 	_isXDiaganolWinner() {
+		const { values } = this.state;
 		return (
-			(this.state.values[0][0] === 'X' &&
-				this.state.values[1][1] === 'X' &&
-				this.state.values[2][2] === 'X') ||
-			(this.state.values[0][2] === 'X' &&
-				this.state.values[1][1] === 'X' &&
-				this.state.values[2][0] === 'X')
+			(values[0][0] === 'X' && values[1][1] === 'X' && values[2][2] === 'X') ||
+			(values[0][2] === 'X' && values[1][1] === 'X' && values[2][0] === 'X')
 		);
 	}
 
@@ -131,27 +105,30 @@ class Board extends React.Component {
 	}
 
 	_isACatsGame() {
+		const { values } = this.state;
 		return (
-			(_.indexOf(this.state.values[0], '...') === -1 &&
-				_.indexOf(this.state.values[1], '...') === -1 &&
-				_.indexOf(this.state.values[2], '...') === -1) &&
-			!this._isAWinner());
+			_.indexOf(values[0], '...') === -1 &&
+			_.indexOf(values[1], '...') === -1 &&
+			_.indexOf(values[2], '...') === -1 &&
+			!this._isAWinner()
+		);
 	}
 
 	_onClick(id) {
-		if (!this.state.winner) {
-			this.setState((prevState) => {
-				const values = prevState.values;
+		const { winner } = this.state;
+		if (!winner) {
+			this.setState(prevState => {
+				const { values } = prevState;
 				const index1 = Number(id[0]);
 				const index2 = Number(id[1]);
 				values[index1][index2] = prevState.xTurn ? 'X' : 'O';
-				return ({
+				return {
 					newGame: false,
 					xTurn: !prevState.xTurn,
 					values,
 					winner: this._isAWinner(),
 					catsGame: this._isACatsGame(),
-				});
+				};
 			});
 		}
 	}
@@ -171,17 +148,25 @@ class Board extends React.Component {
 	}
 
 	render() {
+		const { winner, values, oTheme, xTheme, catsGame } = this.state;
 		let rowNum = -1;
 		return (
-			<div className={`board ${this.state.winner ? 'board__winner' : ''}`}>
+			<div className={`board ${winner ? 'board__winner' : ''}`}>
 				<div className="row">
 					<div className="col-md-6">
-						{this.state.values.map((row) => {
+						{values.map(row => {
 							let colNum = -1;
 							return (
 								<div key={rowNum++} className="row">
 									{row.map(col => (
-										<Square key={colNum++} id={`${rowNum}${colNum}`} value={col} oOption={this.state.oTheme} xOption={this.state.xTheme} onClick={this._onClick} />
+										<Square
+											key={colNum++}
+											id={`${rowNum}${colNum}`}
+											value={col}
+											oOption={oTheme}
+											xOption={xTheme}
+											onClick={this._onClick}
+										/>
 									))}
 								</div>
 							);
@@ -192,7 +177,7 @@ class Board extends React.Component {
 							<div className="col-md-12">
 								<Options
 									handleThemeXChange={this._handleThemeXChange}
-									xValue={this.state.xTheme}
+									xValue={xTheme}
 									xOptions={[
 										{ value: 'donut', text: 'donut' },
 										{ value: 'neon', text: 'neon' },
@@ -200,7 +185,7 @@ class Board extends React.Component {
 										{ value: 'blob', text: 'blob' },
 									]}
 									handleThemeOChange={this._handleThemeOChange}
-									oValue={this.state.oTheme}
+									oValue={oTheme}
 									oOptions={[
 										{ value: 'flower', text: 'flower' },
 										{ value: 'neon', text: 'neon' },
@@ -215,8 +200,8 @@ class Board extends React.Component {
 							<div className="col-md-12">
 								<Stats
 									clearBoard={this._reset}
-									winner={this.state.winner}
-									catsGame={this.state.catsGame}
+									winner={winner}
+									catsGame={catsGame}
 								/>
 							</div>
 						</div>

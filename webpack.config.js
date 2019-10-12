@@ -11,10 +11,7 @@ const port = 3000;
 
 module.exports = {
 	resolve: {
-		modules: [
-			join(__dirname, 'src'),
-			'node_modules',
-		],
+		modules: [join(__dirname, 'src'), 'node_modules'],
 		extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
 		/**
 		 * Allow all reacts to resolve to one module so npm link works
@@ -34,7 +31,7 @@ module.exports = {
 	],
 	output: {
 		// the output bundle
-		filename: 'bundle.js',
+		filename: 'main.js',
 
 		path: resolve(__dirname, 'dist'),
 
@@ -60,9 +57,7 @@ module.exports = {
 
 		// Allow for HTML 5 navigation (single page nav without #)
 		historyApiFallback: {
-			rewrites: [
-				{ from: /./, to: '/index.html' },
-			],
+			rewrites: [{ from: /./, to: '/index.html' }],
 		},
 	},
 
@@ -70,17 +65,12 @@ module.exports = {
 		rules: [
 			{
 				test: /\.jsx?$/,
-				use: [
-					'babel-loader',
-				],
+				use: ['babel-loader'],
 				include: /src/,
 			},
 			{
 				test: /\.css$/,
-				use: [
-					'style-loader',
-					'css-loader',
-				],
+				use: ['style-loader', 'css-loader'],
 			},
 			{
 				test: /\.json$/,

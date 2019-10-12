@@ -9,11 +9,13 @@ class LoadingDots extends React.Component {
 	}
 
 	componentDidMount() {
+		const { frame } = this.state;
+		const { internal } = this.props;
 		this.interval = setInterval(() => {
 			this.setState({
-				frame: this.state.frame + 1, // eslint-disable-line react/no-did-mount-set-state
+				frame: frame + 1, // eslint-disable-line react/no-did-mount-set-state
 			});
-		}, this.props.interval);
+		}, interval);
 	}
 
 	componentWillUnmount() {
@@ -21,18 +23,21 @@ class LoadingDots extends React.Component {
 	}
 
 	render() {
-		let dots = this.state.frame % (this.props.dots + 1);
+		const { frame } = this.state;
+		const { dots } = this.props;
+		let theDots = frame % (dots + 1);
 		let text = '';
-		while (dots > 0) {
+		while (theDots > 0) {
 			text += '.';
-			dots--;
+			theDots--;
 		}
-		return (<span>{text}&nbsp;</span>);
+		return <span>{text}&nbsp;</span>;
 	}
 }
 
 LoadingDots.defaultProps = {
-	interval: 300, dots: 3,
+	interval: 300,
+	dots: 3,
 };
 
 LoadingDots.propTypes = {

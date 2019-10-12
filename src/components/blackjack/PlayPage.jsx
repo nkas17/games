@@ -1,11 +1,11 @@
 import React from 'react';
-import Table from './Table';
+import BlackJackTable from './BlackJackTable';
 
 const PlayBlackjackPage = () => (
 	<div className="jumbotron">
 		<h2>blackjack</h2>
 		<hr />
-		<Table />
+		<BlackJackTable />
 	</div>
 );
 

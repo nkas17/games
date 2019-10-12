@@ -1,5 +1,0 @@
-{
-  "presets": ["react"],
-  "sourceMaps": "inline",
-  "retainLines": true
-}
