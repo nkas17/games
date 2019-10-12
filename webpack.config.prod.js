@@ -1,58 +1,32 @@
-/**
- * Webpack settings
- *
- * @see - https://webpack.js.org/guides/hmr-react/#webpack-config
- */
-const { resolve, join } = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
+const { resolve } = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const LodashPlugin = require('lodash-webpack-plugin');
+
+// const extractCSS = new ExtractTextPlugin('styles.css');
 
 module.exports = {
+	mode: 'production',
 	resolve: {
-		modules: [
-			join(__dirname, 'src'),
-			'node_modules',
-		],
 		extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
 	},
-
-	entry: './index.jsx',
-
-	output: {
-		// the output bundle
-		filename: 'bundle.js',
-
-		path: resolve(__dirname, 'dist'),
-
-	},
-
+	entry: ['./index.jsx'],
 	context: resolve(__dirname, 'src'),
-
-	devtool: 'source-map',
-
 	module: {
 		rules: [
 			{
 				test: /\.jsx?$/,
-				use: [
-					'babel-loader',
-				],
+				use: ['babel-loader'],
 				include: /src/,
 			},
 			{
 				test: /\.css$/,
-				use: ExtractTextPlugin.extract({
-					fallback: 'style-loader',
-					use: ['css-loader'],
-				}),
+				use: ['style-loader', 'css-loader'], //
+				// use: extractCSS.extract(['css-loader']), // , 'postcss-loader']),
 			},
 			{
-				test: /\.json$/,
-				loader: 'json-loader',
-			},
-			{
-				test: /\.(jpe?g|png|gif|ico)$/i,
+				test: /\.(jpe?g|png|gif|ico|webp)$/i,
 				loader: 'file-loader?name=[name].[ext]',
 			},
 			{
@@ -74,36 +48,11 @@ module.exports = {
 		],
 	},
 	plugins: [
-		// optimizes order
-		new ExtractTextPlugin('styles.css'),
-
-		// // Moves the index.html file over and asset folder to the dist folder
-		new CopyWebpackPlugin([
-			// {output}/dist/file.txt
-			{ from: 'index.html' },
-
-		// 	// Copy directory contents to {output}/to/directory/
-		// 	{ from: 'assets', to: 'assets' },
-		]),
-		new webpack.LoaderOptionsPlugin({
-			minimize: true,
-			debug: false,
-		}),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify('production'),
-			},
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			beautify: false,
-			mangle: {
-				screw_ie8: true,
-				keep_fnames: true,
-			},
-			compress: {
-				screw_ie8: true,
-			},
-			comments: false,
-		}),
+		new CopyWebpackPlugin([{ from: 'index.html' }, { from: 'assets' }]),
+		// extractCSS,
+		// new BundleAnalyzerPlugin(),
+		// new LodashPlugin({
+		// 	shorthands: true,
+		// }),
 	],
 };

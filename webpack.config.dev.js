@@ -15,12 +15,12 @@ module.exports = {
 		extensions: ['.js', '.jsx', '.json', '.css'],
 	},
 	entry: [
-        // the entry point of our app
+		// the entry point of our app
 		'index.jsx',
 	],
 	output: {
-        // the output bundle
-		filename: 'bundle.js',
+		// the output bundle
+		filename: 'main.js',
 
 		path: resolve(__dirname, 'dist'),
 	},
@@ -72,13 +72,13 @@ module.exports = {
 		],
 	},
 	plugins: [
-        // Moves the index.html file over and asset folder to the dist folder
+		// Moves the index.html file over and asset folder to the dist folder
 		new CopyWebpackPlugin([
 			// {output}/dist/file.txt
-            { from: 'index.html' },
+			{ from: 'index.html' },
 
 			// Copy directory contents to {output}/to/directory/
-            { from: 'assets', to: 'assets' },
+			{ from: 'assets', to: 'assets' },
 		]),
 	],
 };
