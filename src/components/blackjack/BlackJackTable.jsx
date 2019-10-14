@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 
-class BlackJackTable extends React.Component {
+class BlackJackTable extends React.PureComponent {
 	static _shuffleDeck() {
 		const deck = [
 			'2_S',
@@ -65,9 +65,34 @@ class BlackJackTable extends React.Component {
 		this.state = {
 			numberOfDecks: 1,
 			dealerCards: BlackJackTable._shuffleDeck(),
-			player1Cards: [],
-			player2Cards: [],
+			players: [
+				{
+					cards: [],
+					id: 1,
+				},
+				{
+					cards: [],
+					id: 2,
+				}
+			]
 		};
+	}
+
+	_hit({ playerId }) {
+		let dealerCards = this.state.dealerCards;
+		let thePlayers = this.state.players;
+		const card = dealerCards.pop();
+		const player = _.find(this.state.players, { id: playerId })
+		_.remove(thePlayers, player);
+		console.log(player);
+		player.cards.push(card);
+		this.setState((state) => ({
+			dealerCards,
+			players: [
+				...thePlayers,
+				player
+			]
+		}))
 	}
 
 	componentDidMount() {
@@ -75,18 +100,53 @@ class BlackJackTable extends React.Component {
 		console.log(dealerCards);
 	}
 
+
 	render() {
-		const { numberOfDecks } = this.state;
+		const { numberOfDecks, players } = this.state;
 		return (
 			<div>
 				<p>
 					coming soon...blackjack table with {numberOfDecks * 52} cards
 				</p>
 				<h3>mock table</h3>
-				<p>dealer</p>
-				<p>player 1</p>
-				<p>player 2</p>
-			</div>
+				<div className="black-jack-table">
+					<section className="dealer">
+						<h4>dealer</h4>
+						<hr />
+						<p>card1</p>
+						<p>card2</p>
+						<p>card3</p>
+						<p>total card value count</p>
+						<button type="button" onClick={() => console.log('dealer deal')}>deal</button>
+						<button type="button" onClick={() => console.log('dealer hit')}>hit me</button>
+						<button type="button" onClick={() => console.log('dealer shuffle')}>shuffle</button>
+					</section>
+					<section className="player1">
+						<h4>player 1</h4>
+						<hr />
+						{_.map(_.find(players, { id: 1 }, {}).cards, (card) => (<p>{card}</p>))}
+						<p>total card value count</p>
+						<button type="button" onClick={() => {
+							console.log('player 1 hit');
+							this._hit({ playerId: 1 });
+						}
+						}>hit me</button>
+						<button type="button" onClick={() => console.log('player 1 stay')}>stay</button>
+					</section>
+					<section className="player2">
+						<h4>player 2</h4>
+						<hr />
+						{_.map(_.find(players, { id: 2 }, {}).cards, (card) => (<p>{card}</p>))}
+						<p>total card value count</p>
+						<button type="button" onClick={() => {
+							console.log('player 2 hit');
+							this._hit({ playerId: 2 });
+						}
+						}>hit me</button>
+						<button type="button" onClick={() => console.log('player 2 stay')}>stay</button>
+					</section >
+				</div >
+			</div >
 		);
 	}
 }
