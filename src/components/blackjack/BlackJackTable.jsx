@@ -1,70 +1,91 @@
 import React from 'react';
 import _ from 'lodash';
+import Player from './Player';
+import Dealer from './Dealer';
+import { deck } from './cards';
 
 class BlackJackTable extends React.PureComponent {
-	static _shuffleDeck() {
-		const deck = [
-			'2_S',
-			'3_S',
-			'4_S',
-			'5_S',
-			'6_S',
-			'7_S',
-			'8_S',
-			'9_S',
-			'10_S',
-			'J_S',
-			'Q_S',
-			'K_S',
-			'A_S',
-			'2_H',
-			'3_H',
-			'4_H',
-			'5_H',
-			'6_H',
-			'7_H',
-			'8_H',
-			'9_H',
-			'10_H',
-			'J_H',
-			'Q_H',
-			'K_H',
-			'A_H',
-			'2_C',
-			'3_C',
-			'4_C',
-			'5_C',
-			'6_C',
-			'7_C',
-			'8_C',
-			'9_C',
-			'10_C',
-			'J_C',
-			'Q_C',
-			'K_C',
-			'A_C',
-			'2_D',
-			'3_D',
-			'4_D',
-			'5_D',
-			'6_D',
-			'7_D',
-			'8_D',
-			'9_D',
-			'10_D',
-			'J_D',
-			'Q_D',
-			'K_D',
-			'A_D',
-		];
-		return _.shuffle(deck);
-	}
-
 	constructor(props) {
 		super(props);
 		this.state = {
+			isTimeToShuffle: false,
 			numberOfDecks: 1,
-			dealerCards: BlackJackTable._shuffleDeck(),
+			cards: _.shuffle(deck),
+			dealerCards: [],
+			showDealerCard: false,
+			players: [
+				{
+					cards: [],
+					id: 1,
+					stay: false,
+				},
+				{
+					cards: [],
+					id: 2,
+					stay: false,
+				}
+			]
+		};
+		this._hit = this._hit.bind(this);
+		this._stay = this._stay.bind(this);
+		this._clearTable = this._clearTable.bind(this);
+		this._deal = this._deal.bind(this);
+		this._dealerHit = this._dealerHit.bind(this);
+		this._shuffle = this._shuffle.bind(this);
+	}
+
+	_stay({ playerId }) {
+		let thePlayers = this.state.players;
+		let showDealerCard = this.state.showDealerCard;
+		const player = _.find(this.state.players, { id: playerId })
+		_.remove(thePlayers, player);
+		player.stay = true;
+		thePlayers.push(player);
+		for (let i = 0; i < thePlayers.length; i++) {
+			showDealerCard = thePlayers[i].stay;
+			if (!showDealerCard) break;
+		}
+		this.setState({
+			showDealerCard,
+			players: [
+				...thePlayers,
+			]
+		})
+	}
+
+	_hit({ playerId }) {
+		let theCards = this.state.cards;
+		let thePlayers = this.state.players;
+		const card = theCards.pop();
+		const player = _.find(this.state.players, { id: playerId })
+		_.remove(thePlayers, player);
+		player.cards.push(card);
+		this.setState((state) => ({
+			cards: theCards,
+			players: [
+				...thePlayers,
+				player
+			]
+		}))
+	}
+
+	_dealerHit() {
+		let theCards = this.state.cards;
+		let theDealerCards = this.state.dealerCards;
+		const card = theCards.pop();
+		theDealerCards.push(card);
+		this.setState((state) => ({
+			cards: [...theCards],
+			dealerCards: [...theDealerCards],
+		}))
+	}
+
+	_clearTable() {
+		const isTimeToShuffle = this.state.cards.length < 12;
+		this.setState((state) => ({
+			isTimeToShuffle,
+			showDealerCard: false,
+			dealerCards: [],
 			players: [
 				{
 					cards: [],
@@ -75,76 +96,70 @@ class BlackJackTable extends React.PureComponent {
 					id: 2,
 				}
 			]
-		};
+		}));
 	}
 
-	_hit({ playerId }) {
-		let dealerCards = this.state.dealerCards;
+	_deal() {
+		let theCards = this.state.cards;
 		let thePlayers = this.state.players;
-		const card = dealerCards.pop();
-		const player = _.find(this.state.players, { id: playerId })
-		_.remove(thePlayers, player);
-		console.log(player);
-		player.cards.push(card);
+		let dealer = this.state.dealerCards;
+		for (let i = 0; i < 2; i++) {
+			thePlayers[0].cards.push(theCards.pop());
+			thePlayers[1].cards.push(theCards.pop());
+			dealer.push(theCards.pop());
+		}
 		this.setState((state) => ({
-			dealerCards,
+			cards: theCards,
 			players: [
 				...thePlayers,
-				player
-			]
+			],
+			dealerCards: dealer,
 		}))
 	}
 
-	componentDidMount() {
-		const { dealerCards } = this.state;
-		console.log(dealerCards);
+	_shuffle() {
+		const cards = _.shuffle(deck);
+		this.setState((state) => ({
+			isTimeToShuffle: false,
+			cards,
+			dealerCards: [],
+			showDealerCard: false,
+			players: [
+				{
+					cards: [],
+					id: 1,
+				},
+				{
+					cards: [],
+					id: 2,
+				}
+			]
+		}));
 	}
 
-
 	render() {
-		const { numberOfDecks, players } = this.state;
+		const { numberOfDecks, players, dealerCards, showDealerCard, isTimeToShuffle } = this.state;
 		return (
 			<div>
-				<p>
-					coming soon...blackjack table with {numberOfDecks * 52} cards
-				</p>
-				<h3>mock table</h3>
+				<h3>
+					table with {numberOfDecks * 52} cards</h3>
 				<div className="black-jack-table">
-					<section className="dealer">
-						<h4>dealer</h4>
-						<hr />
-						<p>card1</p>
-						<p>card2</p>
-						<p>card3</p>
-						<p>total card value count</p>
-						<button type="button" onClick={() => console.log('dealer deal')}>deal</button>
-						<button type="button" onClick={() => console.log('dealer hit')}>hit me</button>
-						<button type="button" onClick={() => console.log('dealer shuffle')}>shuffle</button>
-					</section>
-					<section className="player1">
-						<h4>player 1</h4>
-						<hr />
-						{_.map(_.find(players, { id: 1 }, {}).cards, (card) => (<p>{card}</p>))}
-						<p>total card value count</p>
-						<button type="button" onClick={() => {
-							console.log('player 1 hit');
-							this._hit({ playerId: 1 });
-						}
-						}>hit me</button>
-						<button type="button" onClick={() => console.log('player 1 stay')}>stay</button>
-					</section>
-					<section className="player2">
-						<h4>player 2</h4>
-						<hr />
-						{_.map(_.find(players, { id: 2 }, {}).cards, (card) => (<p>{card}</p>))}
-						<p>total card value count</p>
-						<button type="button" onClick={() => {
-							console.log('player 2 hit');
-							this._hit({ playerId: 2 });
-						}
-						}>hit me</button>
-						<button type="button" onClick={() => console.log('player 2 stay')}>stay</button>
-					</section >
+					<Dealer
+						isTimeToShuffle={isTimeToShuffle}
+						dealerCards={dealerCards}
+						showDealerCard={showDealerCard}
+						clearTable={this._clearTable}
+						deal={this._deal}
+						dealerHit={this._dealerHit}
+						shuffle={this._shuffle} />
+					<Player
+						player={_.find(players, { id: 1 })}
+						hit={this._hit}
+						stay={this._stay} />
+					<Player
+						player={_.find(players, { id: 2 })}
+						hit={this._hit}
+						stay={this._stay} />
 				</div >
 			</div >
 		);
