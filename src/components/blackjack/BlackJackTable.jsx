@@ -136,6 +136,9 @@ class BlackJackTable extends React.PureComponent {
 			]
 		}));
 	}
+	componentDidUpdate(prevProps) {
+		window.scroll(0, 500);
+	}
 
 	render() {
 		const { numberOfDecks, players, dealerCards, showDealerCard, isTimeToShuffle } = this.state;
